@@ -1,0 +1,11 @@
+<h2 class="titulo_principal">Editar Sub Objetivo <b class="color_verde">{{Datos.objetivo}}</b></h2>
+
+
+<form action="/objetivos/sub/edit/{{Datos.id}}" method="POST" class="contenedor_form">
+	<div class="contenedor_inputs">
+		<input type="TEXT" name="objetivo_name" placeholder="Nombre de Sub Objetivo" value="{{Datos.objetivo}}" required class="color_blanco">
+		<input type="TEXT" name="descripcion" placeholder="Descripcion de Sub Objetivo" value="{{Datos.descripcion}}" class="color_blanco">
+		<input type="number" name="posicion" placeholder="posicion" value="{{Datos.posicion}}" required class="color_naranja">
+	</div>
+	<input type="submit" value="Enviar" class="btn_enviar">
+</form>

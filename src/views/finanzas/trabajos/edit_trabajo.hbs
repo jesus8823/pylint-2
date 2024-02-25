@@ -1,0 +1,14 @@
+<h2 class="titulo_principal">Editar Trabajo</h2>
+
+<form action="/finanzas/trabajo/edit/{{Datos.id}}" method="POST" class="contenedor_form">
+	<div class="contenedor_inputs">
+			
+		<input type="number" name="id_trabajo" require value="{{Datos.id}}" class="color_blanco" hidden>
+		<input type="text" name="nombre_trabajo" require value="{{Datos.nombre}}" class="color_blanco">
+		<input type="datetime-local" required name="fecha_inicio" class="color_verde" value="{{Datos.fecha_inicio_f}}" required>
+		<input type="datetime-local" name="fecha_fin" class="color_naranja" value="{{Datos.fecha_fin_f}}">
+	</div>
+	<input type="submit" value="Enviar" class="btn_enviar">
+</form>
+
+<script type="text/javascript" src="/codigo/comando.js"></script>

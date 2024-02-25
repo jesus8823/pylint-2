@@ -1,0 +1,11 @@
+<h2 class="titulo_principal">Editar tipo_dinero</h2>
+
+<form action="/finanzas/edit_tipo_dinero/{{Tipo_Dinero.id}}" method="POST" class="contenedor_form">
+	<div class="contenedor_inputs">
+		<input type="text" name="tipo_dinero_nombre" required placeholder="Nombre" value="{{Tipo_Dinero.nombre}}" class="color_blanco" required>
+		<input type="text" name="tipo_dinero_simbolo" required placeholder="Simbolo" value="{{Tipo_Dinero.simbolo}}" class="color_blanco" required>
+		<input type="color" name="tipo_dinero_color" required value="{{Tipo_Dinero.color}}" class="color_blanco" required>
+		<input type="number" step="1" name="tipo_dinero_posicion" placeholder="Posicion" value="{{Tipo_Dinero.posicion}}" class="color_blanco" required>
+	</div>
+	<input type="submit" value="Enviar" class="btn_enviar">
+</form>

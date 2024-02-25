@@ -1,0 +1,10 @@
+<h2 class="titulo_principal">Añadir Nuevo Sub Objetivo a <b class="color_verde">{{Datos.objetivo}}</b></h2>
+
+<form action="/objetivos/sub/add/{{Datos.id}}" method="POST" class="contenedor_form">
+	<div class="contenedor_inputs">
+		<input type="text" name="objetivo_name" required placeholder="Sub objetivo" class="color_blanco">
+		<input type="text" name="descripcion" placeholder="Descripcion" class="color_blanco">
+		<input type="number" name="posicion" required placeholder="Posicion" class="color_naranja">
+	</div>
+	<input type="submit" value="Enviar" class="btn_enviar">
+</form>

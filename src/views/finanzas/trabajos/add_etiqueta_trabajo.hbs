@@ -1,0 +1,84 @@
+<h2 class="titulo_principal">Añadir Etiqueta {{Datos.nombre}}</h2>
+
+<form action="/finanzas/trabajo/etiqueta_add/{{Datos.id}}" method="POST" class="contenedor_form">
+	<div class="contenedor_inputs">
+		<input type="number" name="id_trabajo" value={{Datos.id}} hidden>
+		<input type="text" name="nombre_etiqueta" required placeholder="Nombre Etiqueta" class="color_blanco" required>
+		<input type="text" name="descripcion_etiqueta" required placeholder="Descripcion Etiqueta" class="color_blanco" required>
+		<input type="text" name="ingreso_etiqueta" required placeholder="Ingreso" class="color_blanco" required>
+
+		<input type="number"  name="id_tipo_monto_registros" placeholder="Id Tipo Monto" class="color_gris" required id="tipo_dinero_id_input" hidden>
+		<input type="text"  name="tipo_monto_registros" placeholder="Tipo Monto" class="color_marron" required id="tipo_dinero_nombre_input">
+
+		<input type="number"  name="id_banco_registros" placeholder="Id Banco" class="color_azul" required id="banco_id_input" hidden>
+		<input type="text"  name="banco_registros" placeholder="Banco" class="color_verde" required id="banco_nombre_input">
+
+		<!-- para evitar error -->
+		<input type="number"  name="id_etiqueta_registros" placeholder="Id Etiqueta" class="color_azul" id="etiquta_id_input" hidden>
+		<input type="text"  name="etiqueta_registros" placeholder="Etiqueta" class="color_celeste" id="etiquta_nombre_input" hidden>
+	</div>
+	<input type="submit" value="Enviar" class="btn_enviar">
+</form>
+
+<div class="contenedor_busqueda" id="contenedor_busqueda_1">
+	<div class="busqueda">
+		<div class="busqueda_titulo_contenedor">
+			<h3>Busqueda Etiquetas</h3>
+			<input type="text" name="etiquetas_buscar" placeholder="nombre" id="filtro_etiquetas">
+		</div>
+		
+		<div id="contenedor_elementos_filtro_etiquetas" class="contenedor_elementos_filtro_etiquetas">
+			{{#each Etiquetas}}
+			<div onclick="imprimir_dato_etiqueta({{id}})" id="etiqueta_{{id}}" >
+				<p hidden>{{id}}</p>
+				<h4>{{nombre}}</h4>
+			</div>
+			{{/each}}
+		</div>
+		<div class="busqueda_quitar" id="busqueda_quitar_1">X</div>
+	</div>
+</div>
+
+<div class="contenedor_busqueda" id="contenedor_busqueda_2">
+	<div class="busqueda">
+		<div class="busqueda_titulo_contenedor">
+			<h3>Busqueda Bancos</h3>
+			<input type="text" name="etiquetas_buscar" placeholder="nombre" id="filtro_bancos">
+		</div>
+		
+		<div id="contenedor_elementos_filtro_bancos" class="contenedor_elementos_filtro_etiquetas">
+			{{#each Bancos}}
+			<div onclick="imprimir_dato_banco({{id}})" id="banco_{{id}}" >
+				<p hidden>{{id}}</p>
+				<h4>{{nombre}}</h4>
+			</div>
+			{{/each}}
+		</div>
+		<div class="busqueda_quitar" id="busqueda_quitar_2">X</div>
+	</div>
+</div>
+
+
+
+<div class="contenedor_busqueda" id="contenedor_busqueda_3">
+	<div class="busqueda">
+		<div class="busqueda_titulo_contenedor">
+			<h3>Busqueda Tipo de Monto</h3>
+			<input type="text" name="etiquetas_buscar" placeholder="nombre" id="filtro_tipo_dinero">
+		</div>
+		
+		<div id="contenedor_elementos_filtro_tipo_dinero" class="contenedor_elementos_filtro_etiquetas">
+			{{#each Tipo_Dinero}}
+			<div onclick="imprimir_dato_tipo_dinero({{id}})" id="tipo_dinero_{{id}}" >
+				<p hidden>{{id}}</p>
+				<h4>{{simbolo}}</h4>
+			</div>
+			{{/each}}
+		</div>
+		<div class="busqueda_quitar" id="busqueda_quitar_3">X</div>
+	</div>
+</div>
+
+
+<script type="text/javascript" src="/codigo/busqueda_etiqueta.js"></script>
+<script type="text/javascript" src="/codigo/comando.js"></script>

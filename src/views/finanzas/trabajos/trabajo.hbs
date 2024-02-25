@@ -1,0 +1,56 @@
+{{> menu_finanzas}}
+
+<div class="tabla_contenedor tabla_contenedor_registro">
+
+	<div class="titulo_tabla_contenedor">
+			<h4 class="titulo_tabla titulo_tabla_contenedor_registro">Trabajo</h4>
+			<a href="/finanzas/trabajo/etiqueta_add/{{Id_trabajo}}" class="titulo_tabla_contenedor_btn_derecho">Agregar Etiqueta</a>
+	</div>
+
+	<div class="table">
+		<table>
+			<thead>
+				
+				<tr>
+					<th>Etiqueta</th>
+					<th>Descripcion</th>
+					<th>Ingreso</th>
+					<!-- <th>Banco<th> -->
+					<th>Banco</th>
+					<th>Moneda</th>
+					<th>Generado</th>
+					<th>Acciones</th>
+				</tr>
+				
+			</thead>
+			<tbody>
+				<div class="tbody">
+
+					{{#each Datos}}
+					<tr>
+						<form action="/finanzas/trabajo/insertar_registros/{{id_trabajo_etiqueta}}/{{id_etiqueta}}" method="POST">
+						<td>{{nombre_etiqueta}}</td>
+						<td class="color_verde">
+							<input type="" name="descripcion" value="{{descripcion}}" class="input_acceso_rapido">
+						</td>
+						<td class="color_verde">
+							<input type="" name="dinero" value="{{toFixed ingreso 2}}" class="input_acceso_rapido">
+						</td>
+						<td hidden><input type="number" name="id_banco" value="{{id_banco}}"></td>
+						<td hidden><input type="number" name="id_tipo_dinero" value="{{id_tipo_dinero}}"></td>
+						<td>{{nombre_banco}}</td>
+						<td>{{simbolo_tipo_dinero}}</td>
+						<td>0</td>
+						<td class="contenedor_btn_registro">
+							<button class="btn_agregar_finanzas">Insertar</button>
+							<a href="/finanzas/trabajo/etiqueta_edit/{{id_etiqueta}}/{{...Id_trabajo}}" class="btn_edit_finanzas">Editar</a>
+				        	<a href="/finanzas/trabajo/etiqueta_delet/{{...Id_trabajo}}/{{id_etiqueta}}" class="btn_elim_finanzas">Elimina</a>
+				        </td>
+				    	</form>
+					</tr>
+					{{/each}}
+				</div>
+			</tbody>
+		</table>
+	</div>
+</div>

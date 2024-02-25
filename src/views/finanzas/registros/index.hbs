@@ -1,0 +1,77 @@
+{{> menu_finanzas}}
+<!-- <a href="/finanzas/registros/calcular_dinero" class="calcular">Calcular</a> -->
+<div class="tabla_contenedor tabla_contenedor_registro">
+
+		<div class="titulo_tabla_contenedor">
+				<a href="/finanzas/registros/imprimir_excel" class="titulo_tabla_contenedor_btn_izquierdo">Excel</a>
+				<h4 class="titulo_tabla titulo_tabla_contenedor_registro">Registros</h4>
+				<a href="/finanzas/add/registros" class="titulo_tabla_contenedor_btn_derecho">Agregar</a>
+		</div>
+		<div class="table">
+			<table>
+		
+			<thead>
+
+			    <tr>
+			      <th class="none">ID</th>
+			      <th>Descripcion</th>
+			      <th>Etiqueta</th>
+			      <th>Monto</th>
+			      <th>Moneda</th>
+			      <th>Tipo de Monto</th>
+			      <th>Dinero Actual</th>
+			      <!-- <th class="none">Dinero banco</th> -->
+			      <th>Fecha</th>
+			      <th>Acciones</th>
+			    </tr>
+			 </thead>
+			 
+			 <tbody>
+			 	<div class="tbody">
+			 	{{#each Datos}}
+			    <tr>
+			    	{{#eq finanzas_id null}}
+			    	{{else}}
+			        <td class="none">{{finanzas_id}}</td>
+			        <td class="">{{descripcion}}</td>
+			        {{#eq etiquetas_gastos null}}
+			        <td>{{trabajo_nombre}}</td>
+			        {{else}}
+			        <td>{{etiquetas_nombre}}</td>
+			        {{/eq}}
+			         {{#mayor_menor dinero 0}}
+			        <td class="color_verde"> {{formatNumber (toFixed dinero 2)}} </td>
+			        {{else}}
+			        <td class="color_rojo"> {{formatNumber (toFixed dinero 2)}} </td>
+			        {{/mayor_menor}}
+			      	
+			        <td class="">{{tipo_dinero_simbolo}}</td>
+			        <td class="">{{bancos_nombre}}</td>
+
+			        {{#mayor_menor dinero 0}}
+			        <td class="color_verde">{{formatNumber (toFixed dinero_actual 2)}}</td>
+			        {{else}}
+			        <td class="color_rojo">{{formatNumber (toFixed dinero_actual 2)}}</td>     
+			        {{/mayor_menor}}
+<!-- 
+			        {{#mayor_menor dinero 0}}
+			        <td class="color_verde none">{{formatNumber (toFixed dinero_banco 2)}}</td>
+			        {{else}}
+			        <td class="color_rojo none">{{formatNumber (toFixed dinero_banco 2)}}</td>     
+			        {{/mayor_menor}} -->
+
+			        <td>{{fecha_finanzas}}</td>
+			         <td class="contenedor_btn_registro">
+						<a href="/finanzas/edit/registros/{{finanzas_id}}" class="btn_edit_finanzas">Editar</a>
+				        <a href="/finanzas/elim/registros/{{finanzas_id}}" class="btn_elim_finanzas">Elimina</a>
+			        </td>
+			       {{/eq}}
+			    </tr>
+			    {{/each}}
+				</div>
+			 </tbody>
+			 
+		</table>
+		</div>
+		
+	</div>

@@ -1,0 +1,10 @@
+<h2 class="titulo_principal">Añadir Necesidad</h2>
+
+<form action="/necesidades/add" method="POST" class="contenedor_form">
+	<div class="contenedor_inputs">
+	<input type="text" name="descripcion" required placeholder="Descripcion" class="color_blanco">
+	<input type="datetime-local" required name="fecha_inicio" required class="color_verde">
+	<input type="datetime-local" name="fecha_fin" class="color_naranja">
+	</div>
+	<input type="submit" value="Enviar" class="btn_enviar">
+</form>

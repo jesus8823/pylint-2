@@ -1,0 +1,13 @@
+<h2 class="titulo_principal">Editar actividad <b class="color_verde">{{Datos.descripcion}}</b></h2>
+
+
+<form action="/actividad/edit/{{Datos.id}}" method="POST" class="contenedor_form">
+	<div class="contenedor_inputs">
+		<input type="text" name="descripcion" value="{{Datos.descripcion}}" required class="color_blanco">
+		<input type="text" name="tipo_tarea" value="{{Datos.tipo_tarea}}" required class="color_blanco">
+		<input type="datetime-local" name="fecha_inicio" value="{{Datos.fecha_inicio}}" required class="color_verde">
+		<input type="datetime-local" name="fecha_fin" value="{{Datos.fecha_fin}}" class="color_naranja">
+	</div>
+
+<input type="submit" value="enviar" class="btn_enviar">
+</form>

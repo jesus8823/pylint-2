@@ -1,0 +1,33 @@
+<h2 class="titulo_principal">Añadir Sub Etiqueta</h2>
+
+<form action="/finanzas/add_etiqueta" method="POST" class="contenedor_form">
+	<div class="contenedor_inputs">
+		<input type="text" name="id_etiqueta" requiret>
+		<input type="text" name="etiqueta_nombre" required placeholder="Nombre" class="color_blanco" id="etiquta_general_nombre_input" required>
+		<input type="text" name="sub_etiqueta_nombre">
+		<input type="number" step="1" name="etiqueta_posicion" placeholder="posicion" class="color_blanco" required>
+	</div>
+	<input type="submit" value="Enviar" class="btn_enviar">
+</form>
+
+<div class="contenedor_busqueda" id="contenedor_busqueda_6">
+	<div class="busqueda">
+		<div class="busqueda_titulo_contenedor">
+			<h3>Busqueda Etiquetas</h3>
+			<input type="text" name="etiquetas_buscar" placeholder="nombre" id="filtro_etiquetas">
+		</div>
+		
+		<div id="contenedor_elementos_filtro_etiquetas" class="contenedor_elementos_filtro_etiquetas">
+			{{#each Etiquetas}}
+			<div onclick="imprimir_dato_etiqueta({{id}})" id="etiqueta_{{id}}" >
+				<p hidden>{{id}}</p>
+				<h4>{{nombre}}</h4>
+			</div>
+			{{/each}}
+		</div>
+		<div class="busqueda_quitar" id="busqueda_quitar_6">X</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="/codigo/busqueda_etiqueta.js"></script>
+<script type="text/javascript" src="/codigo/comando.js"></script>

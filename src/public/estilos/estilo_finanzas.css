@@ -1,0 +1,375 @@
+/*tablas configuracion*/
+.tablas_contenedor{
+	width: 95%;
+	height: auto;
+/*	background: black;*/
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 20px;
+	margin: 20px auto;
+}
+.tabla_contenedor{
+	background: #080808;
+	border-radius: 5px;
+}
+
+.titulo_tabla_contenedor{
+	position: relative;
+}
+.titulo_tabla_contenedor_btn_derecho{
+	position: absolute;
+    top: 10px;
+    right: 13px;
+    background: #043a0e85;
+    text-decoration: none;
+    color: #38eb00;
+    padding: 3px 6px;
+    border-radius: 5px;
+    font-size: 13px;
+}.titulo_tabla_contenedor a:hover{
+	background: #043a0e36;
+}
+
+.titulo_tabla_contenedor_btn_izquierdo{
+	position: absolute;
+    top: 10px;
+    left: 13px;
+    background: #043a0e85;
+    text-decoration: none;
+    color: #38eb00;
+    padding: 3px 6px;
+    border-radius: 5px;
+    font-size: 13px;
+}.titulo_tabla_contenedor a:hover{
+	background: #043a0e36;
+}
+
+
+.titulo_tabla{
+	border-radius: 5px 5px 0px 0px;
+	color: grey;
+	text-align: center;
+	padding: 10px;
+	background: #0c0c0c;
+	margin-bottom: 5px;
+}
+table{
+	width: 100%;
+}
+
+th{
+	border-radius: 4px;
+    color: #858585;
+    padding: 8px 10px;
+    background: #202124;
+    text-align: center;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+td{
+	border-radius: 4px;
+    color: #858585;
+    padding: 5px;
+    background: #000;
+    text-align: center;
+    font-size: 15px;
+}
+
+.btn_agregar_finanzas{
+    background: #043a0e85;
+    text-decoration: none;
+    color: #38eb00;
+    padding: 3px 6px;
+    border-radius: 5px;
+    font-size: 13px;
+    border: none;
+    cursor: pointer;
+}.btn_agregar_finanzas:hover{
+	background: #043a0e36;
+}
+
+.btn_edit_finanzas{
+    background: #3a390485;
+    text-decoration: none;
+    color: #ebc500;
+    padding: 3px 6px;
+    border-radius: 5px;
+    font-size: 13px;
+    border: none;
+    cursor: pointer;
+}.btn_edit_finanzas:hover{
+	background: #3a340436;
+}
+.btn_elim_finanzas{
+    background: #3a040485;
+    text-decoration: none;
+    color: #eb0000;
+    padding: 3px 6px;
+    border-radius: 5px;
+    font-size: 13px;
+    border: none;
+    cursor: pointer;
+}.btn_elim_finanzas:hover{
+	background: #3a040436;
+}
+
+/*&tablas generales*/
+
+.titulo_tabla_contenedor_registro{
+	width: 60%;
+	text-align: center;
+	margin: auto;
+	height: 100%;
+}
+
+.tabla_contenedor_registro{
+	width: 80%;
+	height: auto;
+	margin: 20px auto;
+}
+
+/*&ingreso registro individual registros*/
+
+.seleccion_registros_contenedor{
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+/*	justify-content: center;*/
+	align-items: center;
+	position: fixed;
+	padding-top: 12%;
+}
+.seleccion_registros_contenedor a{
+	font-size: 30px;
+	color:#818080;
+	text-decoration: none;
+	font-size: 45px;
+}.seleccion_registros_contenedor a:hover{
+			color: #0b6e00;
+		}
+
+
+
+/*lista de compras*/
+.lista_compras_btn_contenedor{
+	width: 40%;
+	margin: auto;
+	background: black;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 10px;
+	margin-top: 10px;
+	padding: 10px;
+	border-radius: 3px;
+}
+
+.lista_compras_btn_contenedor a{
+    background: #043a0e85;
+    text-decoration: none;
+    color: #38eb00;
+    padding: 3px 6px;
+    border-radius: 5px;
+    font-size: 18px;
+}.titulo_tabla_contenedor a:hover{
+	background: #043a0e36;
+}
+
+
+
+
+.lista_compras_contenedor{
+	display: flex;
+	flex-wrap: wrap;
+	width: 90%;
+	justify-content: center;
+	padding: 10px;
+	border-radius: 5px;
+	margin: 20px auto;
+	background: #0c0c0c;
+	gap: 15px;
+}
+.lista_compras_tarjeta{
+	background: black;
+	width: 40%;
+	height: 200px;
+	padding: 10px;
+	border-radius: 5px;
+	position: relative;
+}
+
+.titulo_lista_compras{
+	text-align: center;
+	margin: 5px auto;
+	
+}
+.titulo_lista_compras a{
+	color: white;
+	text-decoration: none;
+	font-size: 20px;
+}
+
+.descripcion_lista_compras{
+	color: white;
+	font-size: 15px;
+	width: 100%;
+	height: 30%;
+	background: #121212;
+	border-radius: 3px;
+	padding: 10px;
+	overflow: auto;
+	 word-wrap: break-word;
+	 position: absolute;
+	 left: 0;
+	 bottom: 0;
+}
+
+.lista_compras_tarjeta ul{
+	width: 100%;
+}
+.lista_compras_tarjeta li{
+	color: white;
+	margin-top: 10px;
+	margin-left: 20px;
+}
+
+
+
+							/*&control ingresos egresos*/
+
+.contenedor_tarjetas{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 20px;
+}
+
+.contenedor_control{
+	width: 40%;
+	margin: 10px;
+	border-radius: 5px;
+	border-left: 2px solid black;
+	border-bottom: 2px solid black;
+	padding: 5px;
+}
+
+.titulo_control{
+	width: 60%;
+	text-align: center;
+	margin: auto;
+	border-radius: 5px;
+	border-left: 2px solid black;
+	border-bottom: 2px solid black;
+	color: #ababab;
+    background: #181818;
+    padding: 5px;
+    margin-bottom: 8px;
+
+}
+
+.contenedor_fecha_control{
+	width: 80%;
+	display: flex;
+	justify-content: space-between;
+	margin: auto;
+	border-bottom: 2px solid black;
+	border-radius: 5px;
+	padding: 5px;
+	background: #0e0e0e;
+	margin-bottom: 10px;
+}
+.contenedor_fecha_control{
+	text-align: center;
+}
+.titulo_sub_control{color: #939393;}
+.inicio_control{color: #22ed00}
+.fin_control{color: #ff8400}
+.dias_control{color: #00caed}
+
+
+.dinero_control_contenedor{
+	text-align: center;
+}
+
+.ingresos_control{color: #22ed00}
+.egresos_control{color: #ff0000}
+.restante_control{color: #ff8400}
+
+
+.dinero_control_contenedor{
+	width: 70%;
+	display: flex;
+	justify-content: space-between;
+	margin: auto;
+	border-bottom: 2px solid black;
+	border-radius: 5px;
+	padding: 5px;
+	background: #0e0e0e;
+	margin-bottom: 10px;
+}
+
+
+											/*&trabajo*/
+											
+
+
+
+
+
+
+
+
+											/*Media*/
+
+@media (max-width: 1220px) {
+  /* Estilos para pantallas más pequeñas (por ejemplo, dispositivos móviles) */
+ 	.tabla_contenedor{
+ 		width: 98%;
+ 		
+ 	}
+ 	.table{
+ 		height: 65vh;
+		overflow-x: auto;
+ 	}
+ 	.table_etiquetas{
+ 		height: 40vh;
+		overflow-x: auto;
+ 	}
+ 	thead th {
+  position: sticky;
+  top: 0;
+}
+
+.contenedor_btn_registro{
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	justify-content: center;
+
+}
+
+.td_fecha{
+	width: 100px;
+}
+
+ 	.none{
+ 		display: none;
+ 	}
+}
+
+@media (max-width: 900px) {
+ 	.contenedor_control{
+ 		width: 95%;
+ 	}
+ 	.table_control{
+ 		height: 40vh;
+		overflow-x: auto;
+ 	}
+ 	thead th {
+  position: sticky;
+  top: 0;
+}
+}

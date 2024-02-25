@@ -1,0 +1,11 @@
+<h2 class="titulo_principal">Añadir tipo_dinero</h2>
+
+<form action="/finanzas/add_tipo_dinero" method="POST" class="contenedor_form">
+	<div class="contenedor_inputs">
+		<input type="text" name="tipo_dinero_nombre" required placeholder="Nombre" class="color_blanco" required>
+		<input type="text" name="tipo_dinero_simbolo" placeholder="Simbolo" class="color_blanco" required>
+		<input type="color" name="tipo_dinero_color" placeholder="Color" class="color_blanco">
+		<input type="number" step="1" name="tipo_dinero_posicion" placeholder="posicion" class="color_blanco" required>
+	</div>
+	<input type="submit" value="Enviar" class="btn_enviar">
+</form>

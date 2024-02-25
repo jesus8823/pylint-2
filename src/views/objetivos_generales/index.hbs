@@ -1,0 +1,33 @@
+<h2 class="titulo_principal">Objetivos Generales</h2>
+
+<div class="contenedor_btns">
+  <a href="/objetivos/add" class="btn verde">Agregar Objetivo</a>
+  <button class="btn" id="btn_config">config</button>
+</div>
+
+{{#each Objetivos}}
+<div class="contenedor">
+  <h3 class="titulo_secundario color_naranja">{{objetivo}}</h3>
+      <div class="contenedor_btns_peq">
+        <a href="/objetivos/sub/add/{{id}}" class="btn ajus-peq verde select_config" hidden>Agregar</a>
+        <a href="/objetivos/edit/{{id}}" class="btn ajus-peq azul select_config" hidden>Editar</a>
+        <a href="/objetivos/delete/{{id}}" class="btn ajus-peq rojo select_config" hidden>Eliminar</a>
+      </div>
+  <ul class="contenedor_ul">
+  		{{#each ../Objetivos_indi}}
+  			{{#eq objetivo_general ../id}}
+   			<li>
+          <a href="/objetivos_sub/{{id}}" class="a_elemento">{{objetivo}}</a>
+          <br>
+          <div class="contenedor_btns_peq">
+          <a href="/objetivos/sub/edit/{{id}}" class="btn ajus-peq azul select_config" hidden>editar</a>
+          <a href="/objetivos/sub/delete/{{id}}" class="btn ajus-peq rojo select_config" hidden>eliminar</a>
+        </div>
+        </li>
+   			{{/eq}}
+   		{{/each}} 	
+  </ul>
+</div>
+
+<hr>
+{{/each}}

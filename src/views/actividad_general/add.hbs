@@ -1,0 +1,11 @@
+<h2 class="titulo_principal">Añadir Nueva actividad</h2>
+
+<form action="/actividad/add" method="POST" class="contenedor_form">
+	<div class="contenedor_inputs">
+		<input type="text" name="descripcion" required placeholder="Descripcion" class="color_blanco">
+		<input type="text" name="tipo_tarea" required placeholder="Etiqueta" class="color_blanco">
+		<input type="datetime-local" name="fecha_inicio" placeholder="Fecha Inicio" class="color_verde">
+		<input type="datetime-local" name="fecha_fin" placeholder="Fecha Fin" class="color_naranja">
+	</div>
+	<input type="submit" value="Enviar" class="btn_enviar">
+</form>

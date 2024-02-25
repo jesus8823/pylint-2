@@ -1,0 +1,17 @@
+este
+
+
+<h2 class="titulo_principal">Añadir Control Dinero</h2>
+
+<form action="/finanzas/control_ingresos_gastos/add" method="POST" class="contenedor_form">
+	<div class="contenedor_inputs">
+		<textarea type="text" name="titulo_control" placeholder="Titulo" class="color_blanco" required></textarea>
+		<input type="datetime-local" id="fecha_inicio" required name="fecha_inicio" required class="color_verde">
+		<input type="datetime-local" required name="fecha_fin" required class="color_naranja">
+	</div>
+	<input type="submit" value="Enviar" class="btn_enviar">
+</form>
+
+<script type="text/javascript" src="/codigo/Autocompletar_fecha_actual.js"></script>
+<script type="text/javascript" src="/codigo/comando.js"></script>
+

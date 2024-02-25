@@ -1,0 +1,15 @@
+                                        Listado de base de datos
+   Nombre   |  Dueño   | Codificación |      Collate       |       Ctype        |      Privilegios      
+------------+----------+--------------+--------------------+--------------------+-----------------------
+ mustafa    | postgres | UTF8         | Spanish_Chile.1252 | Spanish_Chile.1252 | 
+ mustafa2   | postgres | UTF8         | Spanish_Chile.1252 | Spanish_Chile.1252 | 
+ mustafa_v3 | postgres | UTF8         | Spanish_Chile.1252 | Spanish_Chile.1252 | 
+ postgres   | postgres | UTF8         | Spanish_Chile.1252 | Spanish_Chile.1252 | 
+ pylint     | postgres | UTF8         | Spanish_Chile.1252 | Spanish_Chile.1252 | 
+ template0  | postgres | UTF8         | Spanish_Chile.1252 | Spanish_Chile.1252 | =c/postgres          +
+            |          |              |                    |                    | postgres=CTc/postgres
+ template1  | postgres | UTF8         | Spanish_Chile.1252 | Spanish_Chile.1252 | =c/postgres          +
+            |          |              |                    |                    | postgres=CTc/postgres
+ web_stuff  | postgres | UTF8         | Spanish_Chile.1252 | Spanish_Chile.1252 | 
+(8 filas)
+

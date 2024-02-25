@@ -1,0 +1,43 @@
+{{> menu_finanzas}}
+<div class="tabla_contenedor tabla_contenedor_registro">
+
+	<div class="titulo_tabla_contenedor">
+			<a href="/finanzas/trabajos/anteriores" class="titulo_tabla_contenedor_btn_izquierdo">Trabajos Anteriores</a>
+			<h4 class="titulo_tabla titulo_tabla_contenedor_registro">Trabajos</h4>
+			<a href="/finanzas/trabajos/add" class="titulo_tabla_contenedor_btn_derecho">Agregar</a>
+	</div>
+
+	<div class="table">
+		<table>
+			<thead>
+				
+				<tr>
+					<th>Trabajo</th>
+					<th>Generado</th>
+					<th>Fecha</th>
+					<th>Dias</th>
+					<th>Acciones</th>
+				</tr>
+				
+			</thead>
+			<tbody>
+				<div class="tbody">
+					{{#each Datos}}
+					<tr>
+						
+						<td><a href="/finanzas/trabajo/{{id}}" class="color_gris decoration_none">{{nombre}}</a></td>
+						<td>0</td>
+						<td>{{fecha_inicio_f}}</td>
+						<td>0</td>
+						<td class="contenedor_btn_registro">
+							<a href="/finanzas/trabajo/edit/{{id}}" class="btn_edit_finanzas">Editar</a>
+				        	<a href="/finanzas/trabajo/delet/{{id}}" class="btn_elim_finanzas">Elimina</a>
+				        </td>
+						
+					</tr>
+					{{/each}}
+				</div>
+			</tbody>
+		</table>
+	</div>
+</div>

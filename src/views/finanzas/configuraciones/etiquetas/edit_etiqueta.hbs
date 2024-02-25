@@ -1,0 +1,9 @@
+<h2 class="titulo_principal">Editar Etiqueta</h2>
+
+<form action="/finanzas/edit_etiqueta/{{Etiqueta.id}}" method="POST" class="contenedor_form">
+	<div class="contenedor_inputs">
+		<input type="text" name="etiqueta_nombre" required placeholder="Nombre" value="{{Etiqueta.nombre}}" class="color_blanco" required>
+		<input type="number" step="1" name="etiqueta_posicion" placeholder="posicion" value="{{Etiqueta.posicion}}" class="color_blanco" required>
+	</div>
+	<input type="submit" value="Enviar" class="btn_enviar">
+</form>

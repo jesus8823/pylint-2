@@ -1,0 +1,11 @@
+<h2 class="titulo_principal">Editar Tarea <b class="color_verde">{{Datos.objetivo}}</b></h2>
+
+
+<form action="/objetivos_sub/edit_tarea/{{Datos.id}}" method="POST" class="contenedor_form">
+	<div class="contenedor_inputs">
+		<input type="TEXT" name="descripcion" placeholder="Descripcion de Sub Objetivo" value="{{Datos.descripcion}}" required class="color_blanco">
+		<input type="datetime-local" name="fecha_inicio" value="{{Datos.fecha_inicio}}" class="color_verde">
+		<input type="datetime-local" name="fecha_fin" value="{{Datos.fecha_fin}}" class="color_naranja">
+	</div>
+	<input type="submit" value="enviar" class="btn_enviar">
+</form>

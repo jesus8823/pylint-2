@@ -1,0 +1,49 @@
+{{> menu_finanzas}}
+<div class="lista_compras_btn_contenedor">
+	<a href="">registros</a>
+	<a href="/finanzas/add/lista_compras">lista</a>
+	<a href="/finanzas/gastos/etiquetas">Etiquetas</a>
+</div>
+
+<div class="tabla_contenedor tabla_contenedor_registro">
+
+	<div class="titulo_tabla_contenedor">
+			<h4 class="titulo_tabla titulo_tabla_contenedor_registro">Registros de Gastos</h4>
+			<a href="/finanzas/gastos/add_registros" class="titulo_tabla_contenedor_btn_derecho">Agregar Gasto</a>
+	</div>
+
+	<div class="table">
+		<table>
+			<thead>
+				
+				<tr>
+					<th>Descripcion</th>
+					<th>Etiqueta</th>
+					<th>Monto</th>
+					<th>Moneda</th>
+					<th>Tipo de Monto</th>
+					<th>Fecha</th>
+				</tr>
+				
+			</thead>
+			<tbody>
+				<div class="tbody">
+					{{#each Datos}}
+					<tr>
+						
+						<td>{{nombre_etiqueta}}</td>
+						<td class="color_verde"><input type="" name="dinero" value="{{descripcion}}" class="input_acceso_rapido"></td>
+						<td class="color_verde"><input type="" name="dinero" value="{{toFixed ingreso 2}}" class="input_acceso_rapido"></td>
+						<td>0</td>
+						<td class="contenedor_btn_registro">
+							<button class="btn_agregar_finanzas">Insertar</button>
+							<a href="/finanzas/trabajo/etiqueta_edit/{{id_etiqueta}}" class="btn_edit_finanzas">Editar</a>
+				        	<a href="/finanzas/trabajo/etiqueta_delet/{{...Id_trabajo}}/{{id_etiqueta}}" class="btn_elim_finanzas">Elimina</a>
+				        </td>
+					</tr>
+					{{/each}}
+				</div>
+			</tbody>
+		</table>
+	</div>
+</div>

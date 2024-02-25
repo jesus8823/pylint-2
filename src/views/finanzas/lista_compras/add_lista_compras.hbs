@@ -1,0 +1,23 @@
+<h2 class="titulo_principal">Añadir Control Dinero</h2>
+
+<form action="/finanzas/add/lista_compras" method="POST" class="contenedor_form">
+	<div class="contenedor_inputs">
+		
+		<input type="text" name="lista_compras_nombre" placeholder="Nombre" class="color_azul" required>
+		<textarea type="text" name="lista_compras_descripcion" placeholder="Descripcion" class="color_blanco" required></textarea>
+
+		<input type="datetime-local" id="fecha_inicio" name="fecha_inicio" required class="color_verde">
+		<input type="datetime-local" id="fecha_fin" name="fecha_inicio" required class="color_naranja">
+
+		
+	</div>
+	<input type="submit" value="Enviar" class="btn_enviar">
+</form>
+	
+
+
+
+
+<script type="text/javascript" src="/codigo/Autocompletar_fecha_actual.js"></script>
+<script type="text/javascript" src="/codigo/comando.js"></script>
+

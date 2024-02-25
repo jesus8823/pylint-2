@@ -1,0 +1,9 @@
+<h2 class="titulo_principal">Editar banco</h2>
+
+<form action="/finanzas/edit_banco/{{Banco.id}}" method="POST" class="contenedor_form">
+	<div class="contenedor_inputs">
+		<input type="text" name="banco_nombre" required placeholder="Nombre" value="{{Banco.nombre}}" class="color_blanco" required>
+		<input type="number" step="1" name="banco_posicion" placeholder="posicion" value="{{Banco.posicion}}" class="color_blanco" required>
+	</div>
+	<input type="submit" value="Enviar" class="btn_enviar">
+</form>

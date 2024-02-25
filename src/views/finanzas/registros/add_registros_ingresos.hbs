@@ -1,0 +1,127 @@
+
+{{> menu_finanzas}}
+<h2 class="titulo_principal">Añadir Registro Ingreso</h2>
+
+<form action="/finanzas/add/registros" method="POST" class="contenedor_form">
+	<div class="contenedor_inputs">
+		
+		<input type="text" name="descripcion_registros" placeholder="Descripcion" class="color_blanco" required>
+
+		<!-- &trabajo -->
+		<input type="number"  name="id_trabajo_registros" placeholder="Id trabajos" class="color_azul" required id="trabajo_id_input">
+		<input type="text"  name="trabajo_registros" placeholder="Trabajo" class="color_blanco" required id="trabajo_nombre_input">
+		<!-- ----------------------------------------------------------------- -->
+
+
+		<!-- &trabajo_Etiqueta -->
+		<input type="number"  name="id_etiqueta_trabajo_registros" placeholder="Id etiqueta trabajos" class="color_azul" required id="etiqueta_trabajo_id_input">
+		<input type="text"  name="etiqueta_trabajo_registros" placeholder="Etiqueta Trabajo" class="color_blanco" required id="etiqueta_trabajo_nombre_input">
+		<!-- --------------------------------------------------------------------------- -->
+
+
+		<!-- <input type="number"  name="id_etiqueta_registros" placeholder="Id Etiqueta" class="color_azul" required id="etiquta_id_input" hidden>
+		<input type="text"  name="etiqueta_registros" placeholder="Etiqueta" class="color_celeste" required id="etiquta_nombre_input" hidden> -->
+
+		<input type="text" name="monto" placeholder="Monto" class="color_naranja" required>
+
+		<input type="number"  name="id_tipo_monto_registros" placeholder="Id Tipo Monto" class="color_azul" required id="tipo_dinero_id_input" hidden>
+		<input type="text"  name="tipo_monto_registros" placeholder="Tipo Monto" class="color_marron" required id="tipo_dinero_nombre_input">
+
+		<input type="number"  name="id_banco_registros" placeholder="Id Banco" class="color_azul" required id="banco_id_input" hidden>
+		<input type="text"  name="banco_registros" placeholder="Banco" class="color_verde" required id="banco_nombre_input">
+
+		<input type="datetime-local" id="fecha_inicio" name="fecha" required class="color_gris">
+	</div>
+	<input type="submit" value="Enviar" class="btn_enviar">
+</form>
+
+
+<!-- &trabajo Busqueda -->
+<div class="contenedor_busqueda" id="contenedor_busqueda_1">
+	<div class="busqueda">
+		<div class="busqueda_titulo_contenedor">
+			<h3>Busqueda Trabajo</h3>
+			<input type="text" name="trabajo_buscar" placeholder="nombre" id="filtro_trabajo">
+		</div>
+		
+		<div id="contenedor_elementos_filtro_trabajo" class="contenedor_elementos_filtro_etiquetas">
+			{{#each Trabajos}}
+			<div onclick="imprimir_dato_etiqueta({{id}})" id="trabajo_{{id}}" >
+				<p hidden>{{id}}</p>
+				<h4>{{nombre}}</h4>
+			</div>
+			{{/each}}
+		</div>
+		<div class="busqueda_quitar" id="busqueda_quitar_1">X</div>
+	</div>
+</div>
+<!-- ------------------------------------------------------------------------ -->
+
+
+<!-- &Etiqueta trabajo Busqueda -->
+<div class="contenedor_busqueda" id="contenedor_busqueda_11">
+	<div class="busqueda">
+		<div class="busqueda_titulo_contenedor">
+			<h3>Busqueda Etiqueta Trabajo</h3>
+			<input type="text" name="etiqueta_trabajo_buscar" placeholder="Etiqueta" id="filtro_etiqueta_trabajo">
+		</div>
+		
+		<div id="contenedor_elementos_filtro_etiqueta_trabajo" class="contenedor_elementos_filtro_etiquetas">
+			{{#each Etiquetas_trabajos}}
+			<div onclick="imprimir_dato_etiqueta({{id}})" id="etiqueta_trabajo_{{id}}" >
+				<p hidden>{{id}}</p>
+				<h4>{{nombre}}</h4>
+			</div>
+			{{/each}}
+		</div>
+		<div class="busqueda_quitar" id="busqueda_quitar_11">X</div>
+	</div>
+</div>
+<!-- ------------------------------------------------------------------------ -->
+
+
+
+
+<div class="contenedor_busqueda" id="contenedor_busqueda_2">
+	<div class="busqueda">
+		<div class="busqueda_titulo_contenedor">
+			<h3>Busqueda Bancos</h3>
+			<input type="text" name="etiquetas_buscar" placeholder="nombre" id="filtro_bancos">
+		</div>
+		
+		<div id="contenedor_elementos_filtro_bancos" class="contenedor_elementos_filtro_etiquetas">
+			{{#each Bancos}}
+			<div onclick="imprimir_dato_banco({{id}})" id="banco_{{id}}" >
+				<p hidden>{{id}}</p>
+				<h4>{{nombre}}</h4>
+			</div>
+			{{/each}}
+		</div>
+		<div class="busqueda_quitar" id="busqueda_quitar_2">X</div>
+	</div>
+</div>
+
+<div class="contenedor_busqueda" id="contenedor_busqueda_3">
+	<div class="busqueda">
+		<div class="busqueda_titulo_contenedor">
+			<h3>Busqueda Tipo de Monto</h3>
+			<input type="text" name="etiquetas_buscar" placeholder="nombre" id="filtro_tipo_dinero">
+		</div>
+		
+		<div id="contenedor_elementos_filtro_tipo_dinero" class="contenedor_elementos_filtro_etiquetas">
+			{{#each Tipo_Dinero}}
+			<div onclick="imprimir_dato_tipo_dinero({{id}})" id="tipo_dinero_{{id}}" >
+				<p hidden>{{id}}</p>
+				<h4>{{simbolo}}</h4>
+			</div>
+			{{/each}}
+		</div>
+		<div class="busqueda_quitar" id="busqueda_quitar_3">X</div>
+	</div>
+</div>
+
+
+<script type="text/javascript" src="/codigo/Autocompletar_fecha_actual.js"></script>
+<script type="text/javascript" src="/codigo/busqueda_etiqueta_registros.js"></script>
+<script type="text/javascript" src="/codigo/comando.js"></script>
+

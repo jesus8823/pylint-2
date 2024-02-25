@@ -1,0 +1,20 @@
+{
+  "name": "pylint_tidy_life",
+  "version": "1.0.0",
+  "description": "Programa de organizacion de objetivos y actividad de tareas cotidianas",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/"
+  },
+  "author": "Jesus Molina",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-handlebars": "^7.0.7",
+    "pg": "^8.11.0",
+    "xlsx-populate": "^1.21.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}

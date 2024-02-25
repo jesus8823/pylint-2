@@ -1,0 +1,154 @@
+<h2 class="titulo_principal">necesidades</h2>
+
+<div class="contenedor_btns">
+	<a href="/necesidades/add" class="btn verde">Agregar Necesidad</a>
+	<button class="btn" id="btn_config">config</button>
+</div>
+
+
+<div class="contenedor_btns">
+	{{#eq Comer_datos.fecha_fin null}}
+	<a href="/necesidades/alimentarse/fin" class="btn naranja">Comer F</a>
+	{{else}}
+	<a href="/necesidades/alimentarse/add" class="btn verde">Comer I</a>
+	{{/eq}}
+
+	{{#eq Dormir_datos.fecha_fin null}}
+	<a href="/necesidades/dormir_fin" class="btn naranja">Despertar F</a>
+	{{else}}
+	<a href="/necesidades/dormir_inicio" class="btn azul">Dormir I</a>
+	{{/eq}}
+
+	{{#eq Banarse_datos.fecha_fin null}}
+	<a href="/necesidades/banarse/fin" class="btn naranja">Bañarse F</a>
+	{{else}}
+	<a href="/necesidades/banarse/add" class="btn celeste">Bañarse I</a>
+	{{/eq}}
+
+	{{#eq Irbano_datos.fecha_fin null}}
+	<a href="/necesidades/ir_bano/fin" class="btn naranja">Ir al Baño F</a>
+	{{else}}
+	<a href="/necesidades/ir_bano/add" class="btn marron">Ir al Baño I</a>
+	{{/eq}}
+
+</div>
+
+{{#each Fechas}}
+<div class="contenedor">
+	<h3 class="titulo_secundario">{{fecha}}</h3>
+	
+
+	<ul class="contenedor_ul">
+		{{#each ../Comer_tabla}}
+		{{#eq ../fecha date_inicio}}
+		<li>
+			<b class="color_verde_oscuro">{{alimentarse}}</b> {{descripcion}} 
+			<br>
+			{{#eq time_inicio null}}
+			<a href="" class="btn ajus-peq verde">iniciar</a>
+			{{else}}
+			<b class="color_verde">{{time_inicio}}</b>
+			_ 
+			{{#eq time_fin null}}
+			<a href="/necesidades/alimentarse/fin" class="btn ajus-peq dorado">fin</a>
+			{{else}}
+			<b class="color_naranja">{{time_fin}}</b>
+			{{/eq}}
+
+			{{/eq}}
+
+			<br>
+			<div class="contenedor_btns_peq">
+			
+			
+			<a href="/necesidades/alimentarse/edit/{{id}}" class="btn ajus-peq azul select_config" id="editar_btn_actividad" hidden>editar</a>
+			<a href="/necesidades/alimentarse/delete/{{id}}" class="btn ajus-peq rojo select_config" id="eliminar_btn_actividad" hidden>eliminar</a>
+			</div>
+		</li>
+
+		{{/eq}}
+		{{/each}}
+	</ul>
+
+	<ul class="contenedor_ul">
+		{{#each ../Necesidades_tabla}}
+		{{#eq ../fecha date_inicio}}
+		<li>
+			{{#eq descripcion "Bañarse"}}
+			<b class="color_celeste">{{descripcion}}</b> 
+			{{else}}
+			{{#eq descripcion "Ir al Baño"}}
+			<b class="color_marron">{{descripcion}}</b> 
+			{{else}}
+			{{descripcion}}
+			{{/eq}}
+			{{/eq}}
+			
+			<br>
+			{{#eq time_inicio null}}
+			<a href="" class="btn ajus-peq verde">iniciar</a>
+			{{else}}
+			<b class="color_verde">{{time_inicio}}</b>
+			_ 
+			{{#eq time_fin null}}
+			<a href="/necesidades/fin/{{id}}" class="btn ajus-peq dorado">fin</a>
+			{{else}}
+
+			{{#eq descripcion "Baño"}}
+			<b class="color_naranja">{{date_fin}} {{time_fin}}</b>
+			{{else}}
+			<b class="color_naranja">{{time_fin}}</b>
+			{{/eq}}
+			
+			{{/eq}}
+
+			{{/eq}}
+
+			<br>
+			<div class="contenedor_btns_peq">
+			
+			
+			<a href="/necesidades/edit/{{id}}" class="btn ajus-peq azul select_config" id="editar_btn_actividad" hidden>editar</a>
+			<a href="/necesidades/delete/{{id}}" class="btn ajus-peq rojo select_config" id="eliminar_btn_actividad" hidden>eliminar</a>
+			</div>
+		</li>
+
+		{{/eq}}
+		{{/each}}
+	</ul>
+
+	<ul class="contenedor_ul">
+		{{#each ../Dormir_tabla}}
+		{{#eq ../fecha date_inicio}}
+		<li>
+			<b class="color_azul">{{descripcion}}</b> 
+			<br>
+			{{#eq time_inicio null}}
+			<a href="" class="btn ajus-peq verde">iniciar</a>
+			{{else}}
+			<b class="color_verde">{{time_inicio}}</b>
+			_ 
+			{{#eq time_fin null}}
+			<a href="/necesidades/dormir_fin" class="btn ajus-peq dorado">fin</a>
+			{{else}}
+			<b class="color_naranja">{{date_fin}} {{time_fin}}</b>
+			{{/eq}}
+
+			{{/eq}}
+
+			<br>
+			<div class="contenedor_btns_peq">
+			
+			
+			<a href="/necesidades/dormir/edit/{{id}}" class="btn ajus-peq azul select_config" id="editar_btn_actividad" hidden>editar</a>
+			<a href="/necesidades/dormir/delete/{{id}}" class="btn ajus-peq rojo select_config" id="eliminar_btn_actividad" hidden>eliminar</a>
+			</div>
+		</li>
+
+		{{/eq}}
+		{{/each}}
+	</ul>
+
+</div>
+<hr>
+{{/each}}

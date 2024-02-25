@@ -1,0 +1,79 @@
+{{> menu_finanzas}}
+<div class="tablas_contenedor">
+	<div class="tabla_contenedor">
+			<div class="titulo_tabla_contenedor">
+				<h4 class="titulo_tabla">Bancos</h4>
+				<a href="/finanzas/add_banco" class="titulo_tabla_contenedor_btn_derecho">Agregar</a>
+			</div>
+		<div class="table_etiquetas">
+		<table class="tabla_contenedor">
+			
+			
+			<thead>
+				
+			    <tr>
+			      <th class="none">ID</th>
+			      <th>Nombre</th>
+			      <th>Posicion</th>
+			      <th>Acciones</th>
+			    </tr>
+			 </thead>
+			 <tbody>
+			 	<div class="tbody">
+			 	{{#each Bancos}}
+			    <tr>
+			        <td class="none">{{id}}</td>
+			        <td class="">{{nombre}}</td>
+			        <td class="">{{posicion}}</td>
+			        <td class="contenedor_btn_registro">
+						<a href="/finanzas/edit_banco/{{id}}" class="btn_edit_finanzas">Editar</a>
+				        <a href="/finanzas/elim_banco/{{id}}" class="btn_elim_finanzas">Elimina</a>
+			        </td>
+			    </tr>
+			    {{/each}}
+			</div>
+			 </tbody>
+		</table>
+	</div>
+	</div>
+	<div class="tabla_contenedor">
+		<div class="titulo_tabla_contenedor">
+			<h4 class="titulo_tabla">Tipo Momenda</h4>
+			<a href="/finanzas/add_tipo_dinero" class="titulo_tabla_contenedor_btn_derecho">Agregar</a>
+		</div>
+		<div class="table_etiquetas">
+		<table>
+			
+			<thead>
+
+			    <tr>
+			      <th class="none">ID</th>
+			      <th>Nombre</th>
+			      <th>Simbolo</th>
+			      <th>Color</th>
+			      <th>Posicion</th>
+			      <th>Acciones</th>
+			    </tr>
+			 </thead>
+
+			 <tbody>
+			 	<div class="tbody">
+			 	{{#each Tipo_Dinero}}
+			    <tr>
+			        <td class="none ">{{id}}</td>
+			        <td class="">{{nombre}}</td>
+			        <td class="" style="color: {{color}}">{{simbolo}}</td>
+			        <td class="" style="color: {{color}}">{{color}}</td>
+			        <td class="">{{posicion}}</td>
+			         <td class="contenedor_btn_registro">
+						<a href="/finanzas/edit_tipo_dinero/{{id}}" class="btn_edit_finanzas">Editar</a>
+				        <a href="/finanzas/elim_tipo_dinero/{{id}}" class="btn_elim_finanzas">Elimina</a>
+			        </td>
+			        
+			    </tr>
+			    {{/each}}
+			</div>
+			 </tbody>
+		</table>
+	</div>
+</div>

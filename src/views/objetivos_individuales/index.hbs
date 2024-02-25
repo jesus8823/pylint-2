@@ -1,0 +1,69 @@
+
+<h3 class="titulo_principal">{{Objetivo.objetivo}}</h3>
+<div class="contenedor_btns">
+<a href="/objetivos_sub/add_tarea/{{ID}}" class="btn verde">Agregar Tarea</a>
+<button class="btn" id="btn_config">config</button>
+</div>
+
+<div class="contenedor_btns">
+<a href="/objetivos_sub/iniciar_sub_objetivo/{{ID}}" class="btn verde">Iniciar</a>
+<a href="/objetivos_sub/fin_sub_objetivo/{{ID}}" class="btn dorado">Finalizar</a>
+</div>
+
+<div class="contenedor">
+<h4 class="titulo_secundario color_naranja">Por hacer</h4>
+<ul class="contenedor_ul">
+	{{#each Actividad}}
+		{{#eq date_fin null}}
+			<li>
+				{{descripcion}} 
+
+				{{#eq time_inicio null}}
+				<a href="/objetivos_sub/iniciar_tarea/{{id}}" class="btn ajus-peq verde">iniciar</a>
+				{{else}}
+				<br>
+				<b class="color_verde">{{time_inicio}}</b>
+				_ 
+				<a href="/objetivos_sub/fin_tarea/{{id}}" class="btn ajus-peq dorado">fin</a>			
+				{{/eq}}
+
+				<div class="contenedor_btns_peq">
+					<a href="/objetivos_sub/edit_tarea/{{id}}" class="btn azul ajus-peq select_config" hidden>editar</a>
+					<a href="/objetivos_sub/eliminar_tarea/{{id}}" class="btn rojo ajus-peq select_config" hidden>eliminar</a>
+				</div>
+			</li>	
+		{{/eq}}
+	{{/each}}
+</ul>
+</div>
+<hr>
+<div class="contenedor">
+<h4 class="titulo_secundario color_verde">Realizado</h4>
+</div>
+{{#each Fecha_principal}}
+
+
+<div class="contenedor">
+<h3 class="titulo_secundario">{{date_inicio_principal}}</h3>
+
+<ul class="contenedor_ul">
+	{{#each ../Actividad}}
+		{{#neq date_fin null}}
+		{{#eq ../date_inicio_principal date_inicio}}
+			<li>{{descripcion}} 
+				<br>
+				<b class="color_verde">{{time_inicio}}</b> _ <b class="color_naranja">{{time_fin}}</b>
+				<div class="contenedor_btns_peq">
+					<a href="/objetivos_sub/edit_tarea/{{id}}" class="btn verde ajus-peq select_config" hidden>editar</a>
+					<a href="/objetivos_sub/eliminar_tarea/{{id}}" class="btn rojo ajus-peq select_config" hidden>eliminar</a>
+				</div>
+			</li>	
+		{{/eq}}
+		{{/neq}}
+	{{/each}}
+
+</ul>
+
+</div>
+
+{{/each}}

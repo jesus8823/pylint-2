@@ -1,0 +1,100 @@
+<h2 class="titulo_principal">Actividad</h2>
+<div class="contenedor_btns">
+<a href="/actividad/add" class="btn verde">Agregar</a>
+<button class="btn" id="btn_config">config</button>
+</div>
+
+{{#each fechas_actividad}}
+{{#eq fecha null}}
+<div class="contenedor">
+	<h3 class="titulo_secundario color_naranja">Actividades por hacer:</h3>
+	
+	<ul class="contenedor_ul">
+		{{#each ../datos_actividad}}
+		{{#eq ../fecha date_inicio}}
+		<li>
+			{{descripcion}} 
+
+			
+			{{#eq time_inicio null}}
+			<a href="/actividad/inicio/{{id}}" class="btn ajus-peq verde">iniciar</a>
+			{{else}}
+			<b class="color_verde">{{time_inicio}}</b>
+			_ 
+			{{#eq time_fin null}}
+			<a href="/actividad/fin/{{id}}" class="btn ajus-peq dorado">fin</a>
+			{{else}}
+			<b class="color_naranja">{{time_fin}}</b>
+			{{/eq}}
+
+			{{/eq}}
+			
+			<br>
+			<div class="contenedor_btns_peq">
+			<a href="/actividad/edit/{{id}}" class="btn ajus-peq azul select_config" id="editar_btn_actividad" hidden>editar</a>
+			<a href="/actividad/delete/{{id}}" class="btn ajus-peq rojo select_config" id="eliminar_btn_actividad" hidden>eliminar</a>
+			</div>
+		</li>
+
+		{{/eq}}
+		{{/each}}
+	</ul>
+</div>
+<hr>
+
+
+{{else}}
+
+<div class="contenedor">
+	<h3 class="titulo_secundario">{{fecha}}</h3>
+	
+	<ul class="contenedor_ul">
+		{{#each ../datos_actividad}}
+		{{#eq ../fecha date_inicio}}
+		<li>
+			{{descripcion}} 
+			<br>
+			{{#eq time_inicio null}}
+			<a href="/actividad/inicio/{{id}}" class="btn ajus-peq verde">iniciar</a>
+			{{else}}
+			<b class="color_verde">{{time_inicio}}</b>
+			_ 
+			{{#eq time_fin null}}
+			<a href="/actividad/fin/{{id}}" class="btn ajus-peq dorado">fin</a>
+			{{else}}
+			<b class="color_naranja">{{time_fin}}</b>
+			{{/eq}}
+
+			{{/eq}}
+
+			<br>
+			<div class="contenedor_btns_peq">
+			
+			
+			<a href="/actividad/edit/{{id}}" class="btn ajus-peq azul select_config" id="editar_btn_actividad" hidden>editar</a>
+			<a href="/actividad/delete/{{id}}" class="btn ajus-peq rojo select_config" id="eliminar_btn_actividad" hidden>eliminar</a>
+			</div>
+		</li>
+
+		{{/eq}}
+		{{/each}}
+	</ul>
+	<a href="/actividad/notas/add/{{fecha_inicio}}" class="titulo_secundario">Notas</a>
+	<ul class="contenedor_ul">
+		{{#each ../notas_actividad}}
+		{{#eq ../fecha date}}
+		<li>
+			{{descripcion}}
+			<br>
+			<div class="contenedor_btns_peq">
+				<a href="/actividad/notas/edit/{{id}}" class="btn ajus-peq azul select_config" id="editar_btn_notas" hidden>edit</a>
+				<a href="/actividad/notas/delete/{{id}}" class="btn ajus-peq rojo select_config" id="eliminar_btn_notas" hidden>eliminar</a>
+			</div>
+		</li>
+		{{/eq}}
+		{{/each}}
+	</ul>
+</div>
+<hr>
+{{/eq}}
+{{/each}}

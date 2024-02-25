@@ -1,0 +1,41 @@
+{{> menu_finanzas}}
+<div class="tablas_contenedor">
+	<div class="tabla_contenedor">
+<div class="titulo_tabla_contenedor">
+				<h4 class="titulo_tabla">Etiquetas</h4>
+				<a href="/finanzas/gastos/add_etiqueta" class="titulo_tabla_contenedor_btn_derecho">Agregar</a>
+			</div>
+	<div class="table_etiquetas">
+		<table>
+			
+			<thead>
+
+			    <tr>
+			      <th class="none">ID</th>
+			      <th>Etiqueta</th>
+			      <th>Posicion</th>
+			      <th>Acciones</th>
+			    </tr>
+			 </thead>
+			 <tbody>
+			 	<div class="tbody">
+			 	{{#each Etiquetas}}
+			    <tr>
+			        <td class="none">{{id}}</td>
+			        <td class="">{{nombre}}</td>
+			        <td class="">{{posicion}}</td>
+			         <td class="contenedor_btn_registro">
+						<a href="/finanzas/gastos/edit_etiqueta/{{id}}" class="btn_edit_finanzas">Editar</a>
+				        <a href="/finanzas/gastos/elim_etiqueta/{{id}}" class="btn_elim_finanzas">Elimina</a>
+			        </td>
+			        
+			    </tr>
+			    {{/each}}
+			</div>
+			 </tbody>
+		</table>
+	</div>
+	</div>
+</div>
+	
+	

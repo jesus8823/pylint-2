@@ -1,0 +1,11 @@
+<h2 class="titulo_principal">Añadir Trabajo</h2>
+
+<form action="/finanzas/trabajos/add" method="POST" class="contenedor_form">
+	<div class="contenedor_inputs">
+		<input type="text" name="nombre" required placeholder="Nombre" class="color_blanco" required>
+		<input type="datetime-local" id="fecha_inicio" name="fecha" required class="color_gris">
+	</div>
+	<input type="submit" value="Enviar" class="btn_enviar">
+</form>
+
+<script type="text/javascript" src="/codigo/Autocompletar_fecha_actual.js"></script>

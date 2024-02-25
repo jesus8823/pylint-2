@@ -1,0 +1,49 @@
+.btn_acceso_rapido_contenedor{
+	width: 50px;
+	height:auto;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	background: black;
+	padding: 5px;
+	border-radius: 5px;
+	position: fixed;
+	top: 10%;
+	left: 5px;
+	text-align: center;
+}
+
+.btn_acceso_rapido_contenedor a{
+	text-decoration: none;
+	color: #838383;
+}
+.acceso_rapido_th_input{
+	width: auto;
+}
+
+
+.input_acceso_rapido{
+	width: 100%;
+    background: #060606;
+    border: none;
+    color: #ababab;
+    padding: 8px;
+    outline: none;
+}
+
+
+@media (max-width: 1220px) {
+	.acceso_rapido_th_input_posicion{
+		width: 20px;
+	}
+	.acceso_rapido_th_input_monto{
+		width: 100px;
+	}
+	.acceso_rapido_th_input_monto{
+		width: 50px;
+	}
+	.acceso_rapido_th_input{
+	width: 50%;
+}
+
+}

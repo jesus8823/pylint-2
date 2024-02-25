@@ -1,0 +1,24 @@
+<h2 class="titulo_principal">Editar banco</h2>
+
+<form action="/finanzas/edit/control_dinero/{{Control_Dinero.id}}" method="POST" class="contenedor_form">
+	<div class="contenedor_inputs">
+		<input type="text" name="control_dinero_cantidad" required placeholder="Monto" class="color_azul" value="{{Control_Dinero.dinero}}" required>
+		<input type="text" id ="id_select" name="id_select" class="color_blanco" placeholder="" value="{{Control_Dinero.id_tipo_dinero}}" hidden>
+		<select type="text" name="control_dinero_tipo_dinero" required placeholder="Selecione Estilo de Comida" class="color_gris" value="{{Control_Dinero.tipo_dinero}}" onchange="capturar_id()" id="mySelect">
+		<option>{{Control_Dinero.tipo_dinero}}</option>
+		{{#each Tipo_Dinero}}
+		{{#eq simbolo ../Control_Dinero.tipo_dinero}}
+		{{else}}
+		<option  style="color: {{color}}" id="{{id}}">{{simbolo}}</option>
+		{{/eq}}
+		{{/each}}
+		</select>
+		<textarea type="text" name="control_dinero_descripcion" placeholder="Descripcion" class="color_blanco"  required>{{Control_Dinero.descripcion}}</textarea>
+		<input type="datetime-local" required name="fecha_inicio" class="color_verde" value="{{Control_Dinero.fecha_inicio}}">
+		<input type="datetime-local" name="fecha_fin" class="color_naranja" value="{{Control_Dinero.fecha_fin}}">
+		
+	</div>
+	<input type="submit" value="Enviar" class="btn_enviar">
+</form>
+
+<script type="text/javascript" src="/codigo/comando.js"></script>

@@ -1,0 +1,44 @@
+{{> menu_finanzas}}
+
+
+
+<div class="tabla_contenedor tabla_contenedor_control_dinero">
+		<table>
+			<div class="titulo_tabla_contenedor">
+				<h4 class="titulo_tabla titulo_tabla_contenedor_control_dinero">Control_dinero</h4>
+				<a href="/finanzas/add/control_dinero" class="agregar_control_dinero">Agregar</a>
+			</div>
+			<thead>
+
+			    <tr>
+			      <th>ID</th>
+			      <th>Monto Inicial</th>
+			      <th>Monto Gastado</th>
+			      <th>Monto Residual</th>
+			      <th>Moneda</th>
+			      <th>Fecha_Inicio</th>
+			      <th>Fecha_Fin</th>
+
+			      <th>Acciones</th>
+			    </tr>
+			 </thead>
+			 <tbody>
+			 	{{#each Datos}}
+			    <tr>
+			        <td class="">{{id}}</td>
+			        <td class=""> {{formatNumber (toFixed dinero 2)}} </td>
+			        <td class="">X</td>
+			        <td class="">X</td>
+			        <td>{{tipo_dinero}}</td>
+			        <td>{{fecha_inicio}}</td>
+			        <td>{{fecha_fin}}</td> 
+			         <td>
+						<a href="/finanzas/edit/control_dinero/{{id}}" class="btn_edit_finanzas">Editar</a>
+				        <a href="/finanzas/elim/control_dinero/{{id}}" class="btn_elim_finanzas">Elimina</a>
+			        </td>
+			        
+			    </tr>
+			    {{/each}}
+			 </tbody>
+		</table>
+	</div>
