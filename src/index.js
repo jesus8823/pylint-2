@@ -29,12 +29,15 @@ app.use(express.static(path.join(__dirname, "public")));
 
 //rutas
 app.use(require("./routes/"));
-app.use("/objetivos", require("./routes/objetivos_generales"));
-app.use("/objetivos_sub", require("./routes/objetivos_individuales"));
-app.use("/actividad", require("./routes/actividad_general"));
-app.use("/necesidades", require("./routes/necesidades"));
-app.use("/finanzas", require("./routes/finanzas"));
-app.use("/acceso_rapido", require("./routes/acceso_rapido"));
+
+app.use("/finanzas", require("./routes/finanzas/finanzas"));
+app.use("/finanzas/registros", require("./routes/finanzas/registros"));
+app.use("/finanzas/gastos", require("./routes/finanzas/gastos"));
+
+// app.use("/objetivos", require("./routes/objetivos_generales"));
+// app.use("/objetivos_sub", require("./routes/objetivos_individuales"));
+// app.use("/actividad", require("./routes/actividad_general"));
+// app.use("/necesidades", require("./routes/necesidades"));
 
 
 app.listen(app.get("port"),() => {
