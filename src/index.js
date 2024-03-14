@@ -34,6 +34,9 @@ app.use("/finanzas", require("./routes/finanzas/finanzas"));
 app.use("/finanzas/registros", require("./routes/finanzas/registros"));
 app.use("/finanzas/gastos", require("./routes/finanzas/gastos"));
 
+
+app.use("/gestion_tiempo", require("./routes/gestion de tiempo/gestion_tiempo"));
+
 // app.use("/objetivos", require("./routes/objetivos_generales"));
 // app.use("/objetivos_sub", require("./routes/objetivos_individuales"));
 // app.use("/actividad", require("./routes/actividad_general"));

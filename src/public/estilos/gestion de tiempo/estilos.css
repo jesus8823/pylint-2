@@ -1,0 +1,67 @@
+.contenedor_metas{
+	width: 100%;	
+}
+.meta{
+	width: 80%;
+	height: 80vh;
+	margin: auto;
+	margin-bottom: 20px;
+	background: black;
+	padding: 20px;
+	border-radius: 5px;
+}
+.meta h2{
+	color: #54ef43;
+	font-size: 35px;
+	margin-bottom: 10px;
+}
+
+.fecha_meta_contenedor{
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 40px;
+	margin-bottom: 15px;
+}
+.fecha_meta{
+	text-align: center;
+}
+.registro{color:#bfbfbf;}
+.inicio{color:#ff5454;}
+.plazo{color:#f7bd52;}
+.fin{color: #54f754;}
+
+.fecha{
+	color:#bfbfbf;
+}
+
+
+.objetivos_contenedor{
+	height: 80%;
+	padding: 0 10px;
+	overflow-y: auto;
+}
+
+.fecha_plazo_objetivo_tarea{
+	color: #f7bd52;
+	font-size: 20px;
+}
+
+.objetivo{
+	margin-bottom: 20px;
+}
+
+.objetivo h3{
+	font-size: 27px;
+	color: #bfbfbf;
+	margin-bottom: 10px;
+}
+
+.tareas{
+	padding: 0 15px;
+}
+.tareas li{
+	color: #f52323;
+	padding: 5px 0;
+	font-size: 20px;
+}

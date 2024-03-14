@@ -1,3 +1,62 @@
+Create TABLE metas(
+	id INT PRIMARY KEY,
+	titulo TEXT,
+	descripcion TEXT,
+	fecha_registro TIMESTAMP,
+	fecha_inicio TIMESTAMP,
+	fecha_cumplimiento TIMESTAMP,
+	fecha_fin TIMESTAMP
+);
+CREATE SEQUENCE metas_secuencia;
+ALTER TABLE metas ALTER COLUMN id SET DEFAULT NEXTVAL('metas_secuencia');
+
+CREATE TABLE objetivos(
+	id INT PRIMARY KEY,
+	titulo TEXT,
+	descripcion TEXT,
+	meta INT REFERENCES metas(id),
+	fecha_registro TIMESTAMP,
+	fecha_inicio TIMESTAMP,
+	fecha_cumplimiento TIMESTAMP,
+	fecha_fin TIMESTAMP
+);
+CREATE SEQUENCE objetivos_secuencia;
+ALTER TABLE objetivos ALTER COLUMN id SET DEFAULT NEXTVAL('objetivos_secuencia');
+
+CREATE Table tareas(
+	id INT PRIMARY KEY,
+	titulo TEXT,
+	descripcion TEXT,
+	meta INT REFERENCES metas(id),
+	objetivos INT REFERENCES objetivos(id),
+	fecha_registro TIMESTAMP,
+	fecha_inicio TIMESTAMP,
+	fecha_cumplimiento TIMESTAMP,
+	fecha_fin TIMESTAMP
+);
+CREATE SEQUENCE tareas_secuencia;
+ALTER TABLE tareas ALTER COLUMN id SET DEFAULT NEXTVAL('tareas_secuencia');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 CREATE TABLE objetivos_generales(
 	id INT PRIMARY KEY,
 	Objetivo TEXT,

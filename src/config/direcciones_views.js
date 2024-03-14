@@ -1,7 +1,10 @@
+const raiz_finanzas = './paginas/finanzas';
+const raiz_gestion_tiempo = './paginas/Gestion de tiempo';
+
 const direcciones = {
  
     finanzas_DV: {
-        index: '/paginas/finanzas/index',
+        index: `${raiz_finanzas}/index`,
 
         registros: {
             index: './paginas/finanzas/registros/index',
@@ -17,7 +20,21 @@ const direcciones = {
         }
         
     },
+
+
+
+    gestion_tiempo_DV: {
+        index: './paginas/Gestion de tiempo/index',
+
+        metas:{
+            index: `${raiz_gestion_tiempo}/metas/index`,
+            metas_add: `${raiz_gestion_tiempo}/metas/metas_add`
+        },
+    }
     
 };
+
+    
+
 
 module.exports = direcciones;

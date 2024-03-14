@@ -1,13 +1,16 @@
 const express = require("express");
 const router = express.Router();
+
 const XlsxPopulate = require('xlsx-populate');
 const path = require("path");
 
+const {finanzas_links} = require("../../config/links");
+const {finanzas_DV} = require("../../config/direcciones_views");
 const pool = require("../../database");
 
 
 router.get("/",async (req,res)=>{
-	res.render("./finanzas/index")
+	res.render(`${finanzas_DV.index}`)
 });
 
 

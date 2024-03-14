@@ -50,6 +50,7 @@ router.get("/",async (req,res)=>{
 									LEFT JOIN finanzas_tipo_dinero ON finanzas.finanzas_tipo_dinero = finanzas_tipo_dinero.id
 									ORDER BY finanzas.fecha DESC, finanzas_id DESC`);
 	const Datos = datos.rows;
+	console.log(finanzas_DV.registros.index);
 	res.render(`${finanzas_DV.registros.index}` ,{Datos, finanzas_links});
 })
 
