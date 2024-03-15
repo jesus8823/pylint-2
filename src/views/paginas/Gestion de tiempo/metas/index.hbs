@@ -1,8 +1,14 @@
 {{> menu_gestion_tiempo}}
 
+<div class="btn_metas">
+	<a href="{{gestion_tiempo_links.metas.add}}" class="nueva_meta_btn">Nueva Meta</a>
+	<a href="">Config</a>
+</div>
+
 <div class="contenedor_metas">
+	{{#each Metas}}
 	<div class="meta">
-		<h2>Meta</h2>
+		<h2>{{titulo}} <a href="">editar</a> </h2>
 
 		<div class="fecha_meta_contenedor">
 			<div class="fecha_meta">
@@ -22,91 +28,28 @@
 				<p class="fecha">3/2/24</p>
 			</div>
 		</div>
-
+		<a href="{{../gestion_tiempo_links.objetivos.add}}/{{id}}">Agregar Objetivo</a>
 		<div class="objetivos_contenedor">
+			{{#each ../Objetivos}}
+			{{#eq meta ../id}}
 			<div class="objetivo">
-				<h3>Objetivo <strong class="fecha_plazo_objetivo_tarea">3/2/22</strong></h3>
+				<h3>{{titulo}} <strong class="fecha_plazo_objetivo_tarea">3/2/22</strong> <a href="">Editar</a></h3>
+				<a href="{{../../gestion_tiempo_links.tareas.add}}/{{id}}/{{../id}}">Agregar Tarea</a>
 				<div class="tareas">
-				<li>tarea1 <strong class="fecha_plazo_objetivo_tarea">3/2/22</strong></li>
-				<li>tarea1</li>
-				<li>tarea1</li>
-				<li>tarea1</li>
+				{{#each ../../Tareas}}
+				{{#eq objetivos ../id}}
+				<li>tarea1 <strong class="fecha_plazo_objetivo_tarea">3/2/22</strong> <a href="">Editar</a></li>
+				{{/eq}}
+				{{/each}}
 				</div>
 			</div>
-			<div class="objetivo">
-				<h3>Objetivo <strong class="fecha_plazo_objetivo_tarea">3/2/22</strong></h3>
-				<div class="tareas">
-				<li>tarea1 <strong class="fecha_plazo_objetivo_tarea">3/2/22</strong></li>
-				<li>tarea1</li>
-				<li>tarea1</li>
-				<li>tarea1</li>
-				</div>
-			</div>
-			<div class="objetivo">
-				<h3>Objetivo <strong class="fecha_plazo_objetivo_tarea">3/2/22</strong></h3>
-				<div class="tareas">
-				<li>tarea1 <strong class="fecha_plazo_objetivo_tarea">3/2/22</strong></li>
-				<li>tarea1</li>
-				<li>tarea1</li>
-				<li>tarea1</li>
-				</div>
-			</div>
-		</div>
+			{{/eq}}
+			{{/each}}
 
+		</div>
+		
 	</div>
+	{{/each}}
 
 
-	<div class="meta">
-		<h2>Meta</h2>
-
-		<div class="fecha_meta_contenedor">
-			<div class="fecha_meta">
-				<p class="registro">Registro</p>
-				<p class="fecha">3/2/24</p>
-			</div>
-			<div class="fecha_meta">
-				<p class="inicio">Inicio</p>
-				<p class="fecha">3/2/24</p>
-			</div>
-			<div class="fecha_meta">
-				<p class="plazo">Plazo</p>
-				<p class="fecha">3/2/24</p>
-			</div>
-			<div class="fecha_meta">
-				<p class="fin">Fin</p>
-				<p class="fecha">3/2/24</p>
-			</div>
-		</div>
-
-		<div class="objetivos_contenedor">
-			<div class="objetivo">
-				<h3>Objetivo <strong class="fecha_plazo_objetivo_tarea">3/2/22</strong></h3>
-				<div class="tareas">
-				<li>tarea1 <strong class="fecha_plazo_objetivo_tarea">3/2/22</strong></li>
-				<li>tarea1</li>
-				<li>tarea1</li>
-				<li>tarea1</li>
-				</div>
-			</div>
-			<div class="objetivo">
-				<h3>Objetivo <strong class="fecha_plazo_objetivo_tarea">3/2/22</strong></h3>
-				<div class="tareas">
-				<li>tarea1 <strong class="fecha_plazo_objetivo_tarea">3/2/22</strong></li>
-				<li>tarea1</li>
-				<li>tarea1</li>
-				<li>tarea1</li>
-				</div>
-			</div>
-			<div class="objetivo">
-				<h3>Objetivo <strong class="fecha_plazo_objetivo_tarea">3/2/22</strong></h3>
-				<div class="tareas">
-				<li>tarea1 <strong class="fecha_plazo_objetivo_tarea">3/2/22</strong></li>
-				<li>tarea1</li>
-				<li>tarea1</li>
-				<li>tarea1</li>
-				</div>
-			</div>
-		</div>
-
-	</div>
 </div>

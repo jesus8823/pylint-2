@@ -28,7 +28,15 @@ const direcciones = {
 
         metas:{
             index: `${raiz_gestion_tiempo}/metas/index`,
-            metas_add: `${raiz_gestion_tiempo}/metas/metas_add`
+            add: `${raiz_gestion_tiempo}/metas/metas_add`
+        },
+
+        objetivos:{
+            add: `${raiz_gestion_tiempo}/metas/objetivos/add`
+        },
+
+        tareas:{
+            add: `${raiz_gestion_tiempo}/metas/tareas/add`
         },
     }
     

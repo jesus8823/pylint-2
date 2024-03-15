@@ -1,7 +1,7 @@
 {{> menu_gestion_tiempo}}
 
-<form action="/gestion_tiempo/metas/add" method="POST">
-	<input type="text" name="titulo" required placeholder="Titulo de Meta">
+<form action="/gestion_tiempo/metas/tareas/add/{{ido}}/{{idm}}" method="POST">
+	<input type="text" name="titulo" required placeholder="Titulo de tarea">
 	<textarea placeholder="descripcion" name="descripcion"></textarea>
 	<input type="datetime-local" id="fecha_inicio" name="fecha_inicio" required>
 	<input type="datetime-local" id="fecha_plazo" name="fecha_plazo" required>
