@@ -15,15 +15,26 @@ router.get("/",async (req,res)=>{
 
 
 router.get("/metas",async (req,res)=>{
-	const metas = await pool.query(`SELECT*FROM metas ORDER BY fecha_cumplimiento DESC;`);
+	const metas = await pool.query(`SELECT *, 
+									TO_CHAR(fecha_registro, 'DD/MM/YYYY') AS fecha_registro_t,
+									TO_CHAR(fecha_inicio, 'DD/MM/YYYY') AS fecha_inicio_t,
+									TO_CHAR(fecha_cumplimiento, 'DD/MM/YYYY') AS fecha_cumplimiento_texto_t,
+									TO_CHAR(fecha_fin, 'DD/MM/YYYY') AS fecha_fin_t
+										FROM metas
+										ORDER BY fecha_cumplimiento DESC, fecha_inicio DESC;`
+	);
 	const Metas = metas.rows;
 
-	const objetivos = await pool.query(`SELECT*FROM objetivos ORDER BY fecha_cumplimiento DESC;`)
+	const objetivos = await pool.query(`SELECT*,
+										TO_CHAR(fecha_cumplimiento, 'DD/MM/YYYY') AS fecha_cumplimiento_texto_t
+											FROM objetivos ORDER BY fecha_cumplimiento DESC, fecha_inicio DESC;`)
 	const Objetivos = objetivos.rows;
 
-	const tareas = await pool.query(`SELECT*FROM tareas ORDER BY fecha_cumplimiento DESC;`)
+	const tareas = await pool.query(`SELECT*,
+									 TO_CHAR(fecha_cumplimiento, 'DD/MM/YYYY') AS fecha_cumplimiento_texto_t
+										FROM tareas ORDER BY fecha_cumplimiento DESC;`)
 	const Tareas = tareas.rows;
-	
+
 	res.render(`${gestion_tiempo_DV.metas.index}`, {Metas,Objetivos,Tareas,gestion_tiempo_links})
 });
 
