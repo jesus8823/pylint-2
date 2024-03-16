@@ -23,13 +23,22 @@ const links = {
     gestion_tiempo_links: {
         
         metas: {
-            add: `${GT}/metas/add`
+            add: `${GT}/metas/add`,
+            add_fecha_inicio: `${GT}/metas/add/fecha_inicio`,
+            add_fecha_fin: `${GT}/metas/add/fecha_fin`,
+            add_fecha_plazo: `${GT}/metas/add/fecha_plazo`
         },
         objetivos:{
-            add: `${GT}/metas/objetivos/add`
+            add: `${GT}/metas/objetivos/add`,
+            add_fecha_inicio: `${GT}/metas/objetivos/add/fecha_inicio`,
+            add_fecha_fin: `${GT}/metas/objetivos/add/fecha_fin`,
+            add_fecha_plazo: `${GT}/metas/objetivos/add/fecha_plazo`
         },
         tareas:{
-            add: `${GT}/metas/tareas/add`
+            add: `${GT}/metas/tareas/add`,
+            add_fecha_inicio: `${GT}/metas/tareas/add/fecha_inicio`,
+            add_fecha_fin: `${GT}/metas/tareas/add/fecha_fin`,
+            add_fecha_plazo: `${GT}/metas/tareas/add/fecha_plazo`
         },
 
     }    

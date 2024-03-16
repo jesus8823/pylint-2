@@ -1,0 +1,16 @@
+{{> menu_gestion_tiempo}}
+
+<div class="tareas_orden_contenedor">
+	<div class="tareas__orden_tarjetas_contenedor">
+		<!-- <div class="contenedor_titulo">
+			<h2>{{fecha_cumplimiento_t}}</h2>
+		</div> -->
+		
+	{{#each Tabla_metas_objetivos_tareas}}
+	<div class="contenedor_tareas">
+		<h2 class="meta_ordenar">{{m_titulo}}</h2>
+		<p class="objetivo_ordenar">{{o_titulo}}</p>
+		<li>{{t_titulo}} {{fecha_cumplimiento_t}}</li>
+	</div>
+	{{/each}}
+</div>

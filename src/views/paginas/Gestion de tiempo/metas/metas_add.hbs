@@ -1,11 +1,31 @@
 {{> menu_gestion_tiempo}}
+<div class="contenedor_titulo">
+	<h2 class="titulo_formulario_metas C-blanco B-gris_oscuro">Agregar Meta</h2>
+</div>
 
-<form action="/gestion_tiempo/metas/add" method="POST">
-	<input type="text" name="titulo" required placeholder="Titulo de Meta">
-	<textarea placeholder="descripcion" name="descripcion"></textarea>
-	<input type="datetime-local" id="fecha_inicio" name="fecha_inicio" required>
-	<input type="datetime-local" id="fecha_plazo" name="fecha_plazo" required>
-	<input type="submit" name="" value="Enviar">
+
+<form action="/gestion_tiempo/metas/add" method="POST" class="formulario_metas_contenedor">
+	<div>
+		<p>Titulo</p>
+		<input type="text" name="titulo" required placeholder="Titulo de Meta" class="C-blanco">
+	</div>
+	
+	<div>
+		<p>descripcion</p>
+		<textarea placeholder="descripcion" name="descripcion" class="C-blanco"></textarea>
+	</div>
+	
+	<div>
+		<p>Fecha Inicio</p>
+		<input type="datetime-local" id="fecha_inicio" name="fecha_inicio" class="C-verde">
+	</div>
+	
+	<div>
+		<p>Fecha Plazo</p>
+		<input type="datetime-local" id="fecha_plazo" name="fecha_plazo" class="C-naranja">
+	</div>
+	
+	<button>Enviar</button>
 </form>
 
 <script type="text/javascript" src="/codigo/Autocompletar_fecha_actual.js"></script>

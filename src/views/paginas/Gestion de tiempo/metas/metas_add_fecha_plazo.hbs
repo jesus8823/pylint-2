@@ -1,0 +1,16 @@
+{{> menu_gestion_tiempo}}
+<div class="contenedor_titulo">
+	<h2 class="titulo_formulario_metas C-blanco B-gris_oscuro">Configurar Fecha Plazo</h2>
+</div>
+
+
+<form action="/gestion_tiempo/metas/add/fecha_plazo/{{id}}" method="POST" class="formulario_metas_contenedor">
+	<div>
+		<p>Fecha Plazo</p>
+		<input type="datetime-local" id="fecha_plazo" name="fecha_plazo" class="C-naranja" required>
+	</div>
+	
+	<button>Enviar</button>
+</form>
+
+<script type="text/javascript" src="/codigo/Autocompletar_fecha_actual.js"></script>

@@ -6,7 +6,10 @@ const pool = require("../database");
 router.get("/", async (req,res)=>{
 
 	Promise.all([
-  pool.query(`SELECT DISTINCT TO_CHAR(fecha_inicio, 'DD-MM-YYYY') AS fecha, TO_CHAR(fecha_inicio, 'YYYY-MM-DD') AS fecha_inicio FROM actividad_general ORDER BY fecha_inicio DESC`),
+  pool.query(`SELECT DISTINCT TO_CHAR(fecha_inicio, 'DD-MM-YYYY') AS fecha, 
+  	TO_CHAR(fecha_inicio, 'YYYY-MM-DD') AS fecha_inicio 
+  	FROM actividad_general 
+  	ORDER BY fecha_inicio DESC`),
   pool.query(`SELECT id, descripcion, tipo_tarea, objetivos_individuales, 
               TO_CHAR(fecha_inicio, 'DD-MM-YYYY') AS date_inicio,  
               TO_CHAR(fecha_inicio, 'HH24:MI') AS time_inicio,
