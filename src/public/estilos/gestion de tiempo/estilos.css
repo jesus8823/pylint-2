@@ -29,10 +29,10 @@
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
-	width: 70%;
+	width: 100%;
 	margin: auto;
-	margin-bottom: 20px;
 	gap: 10px;
+	position: fixed;
 }
 .btn_metas{
 	display: flex;
@@ -99,6 +99,7 @@
 
 .contenedor_metas{
 	width: 100%;
+	margin-top: 80px;
 }
 .meta{
 	width: 95%;
@@ -109,11 +110,10 @@
 	padding: 20px;
 	border-radius: 5px;
 	overflow: hidden;
-
 }
 .meta h2{
 	color: #54ef43;
-	font-size: 35px;
+	font-size: 25px;
 	margin-bottom: 10px;
 	text-align: center;
 }
@@ -144,7 +144,7 @@
 
 
 .objetivos_contenedor{
-	height: 80%;
+	height: 75%;
 	padding: 0 10px;
 	overflow-y: auto;
 	margin-top: 20px;
@@ -159,7 +159,7 @@
 }
 
 .objetivo h3{
-	font-size: 27px;
+	font-size: 25px;
 	margin-bottom: 10px;
 }
 
@@ -172,6 +172,34 @@
 	margin-top: 15px;
 }
 
+@media (max-height: 800px) {
+	.objetivos_contenedor{
+		height: 80%;
+	}
+}
+@media (max-width: 430px) {
+	.btn_metas{
+		width: 80px;
+		height: 50px;
+		font-size: 17px;
+	}
+	.meta h2{
+		font-size: 23px;	
+	}
+	.fecha_meta_contenedor{
+		gap: 20px;
+	}
+	.fecha_meta{
+		font-size: 14px;
+	}
+	.objetivo h3{
+		font-size: 20px;
+	}
+	.tareas li{
+		font-size: 16px;
+	}
+
+}
 
 
 
