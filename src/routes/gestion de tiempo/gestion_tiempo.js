@@ -74,8 +74,47 @@ router.post("/metas/add", async(req,res)=>{
 
 		VALUES
 		(DEFAULT,$1,$2,now(),$3,$4,NULL)`,[...Object.values(datos)]);
-	res.redirect("/gestion_tiempo/metas")
+	res.redirect("/gestion_tiempo/metas");
 })
+
+router.get("/metas/edit/:id", async (req,res)=>{
+	const  {id} = req.params;
+	const datos = await pool.query(`SELECT*,
+									TO_CHAR(fecha_inicio, 'YYYY-MM-DD"T"HH24:MI') AS fecha_inicio_f,
+									TO_CHAR(fecha_cumplimiento, 'YYYY-MM-DD"T"HH24:MI') AS fecha_plazo_f,
+									TO_CHAR(fecha_fin, 'YYYY-MM-DD"T"HH24:MI') AS fecha_fin_f
+									FROM metas WHERE id = $1;`,[id]);
+	const Datos = datos.rows[0];
+	res.render(`${gestion_tiempo_DV.metas.edit}`, {Datos})
+		
+})
+
+router.post("/metas/edit/:id",async(req,res)=>{
+	const {id} = req.params;
+		const {titulo,descripcion,fecha_inicio,fecha_plazo,fecha_fin} = req.body;
+
+	const datos = {
+		titulo,
+		descripcion,
+		fecha_inicio,
+		fecha_plazo,
+		fecha_fin,
+		id
+	};
+
+	if (datos.fecha_inicio == ""){
+		datos.fecha_inicio = null
+	}
+	if (datos.fecha_plazo == ""){
+		datos.fecha_plazo = null
+	}
+	if (datos.fecha_fin == ""){
+		datos.fecha_fin = null
+	}
+	await pool.query(`UPDATE metas SET titulo = $1, descripcion = $2, fecha_inicio = $3, fecha_cumplimiento = $4, fecha_fin = $5 WHERE id = $6`,[...Object.values(datos)])
+	res.redirect("/gestion_tiempo/metas");
+})
+
 
 router.get("/metas/add/fecha_inicio/:id", async(req,res)=>{
 	const {id} = req.params;
@@ -93,6 +132,11 @@ router.get("/metas/add/fecha_plazo/:id",async (req,res)=>{
 	const {id} = req.params;
 	res.render(`${gestion_tiempo_DV.metas.add_plazo}`,{id})
 });
+
+
+router.get("/metas/edit/:id",async (req,res)=>{
+	res.render(`${gestion_tiempo_DV.metas.edit}`)
+})
 
 router.post("/metas/add/fecha_plazo/:id",async (req,res)=>{
 	const {id} = req.params;
@@ -251,35 +295,6 @@ router.post("/metas/tareas/add/fecha_plazo/:id/:ido/:idm",async (req,res)=>{
 
 
 router.get("/metas/tareas/orden", async(req,res)=>{
-	// const fechas_tareas = await pool.query(`SELECT DISTINCT 								 
-	// 								 TO_CHAR(fecha_cumplimiento, 'DD/MM/YYYY') AS fecha_cumplimiento_t
-    // 									FROM tareas
-	// 									ORDER BY fecha_cumplimiento_t;`)
-	// const Fechas_Tareas = fechas_tareas.rows;
-
-	// 	const metas = await pool.query(`SELECT *, 
-	// 								TO_CHAR(fecha_registro, 'DD/MM/YYYY') AS fecha_registro_t,
-	// 								TO_CHAR(fecha_inicio, 'DD/MM/YYYY') AS fecha_inicio_t,
-	// 								TO_CHAR(fecha_cumplimiento, 'DD/MM/YYYY') AS fecha_cumplimiento_texto_t,
-	// 								TO_CHAR(fecha_fin, 'DD/MM/YYYY') AS fecha_fin_t
-	// 									FROM metas
-	// 									ORDER BY fecha_fin DESC, fecha_cumplimiento ASC, fecha_inicio ASC;`
-	// );
-	// const Metas = metas.rows;
-
-	// const objetivos = await pool.query(`SELECT*,
-	// 									TO_CHAR(fecha_inicio, 'DD/MM/YYYY') AS fecha_inicio_t,
-	// 									TO_CHAR(fecha_cumplimiento, 'DD/MM/YYYY') AS fecha_cumplimiento_texto_t,
-	// 									TO_CHAR(fecha_fin, 'DD/MM/YYYY') AS fecha_fin_t
-	// 										FROM objetivos ORDER BY fecha_fin DESC, fecha_cumplimiento ASC, fecha_inicio ASC;`)
-	// const Objetivos = objetivos.rows;
-
-	// const tareas = await pool.query(`SELECT*,
-	// 								 TO_CHAR(fecha_inicio, 'DD/MM/YYYY') AS fecha_inicio_t,
-	// 								 TO_CHAR(fecha_cumplimiento, 'DD/MM/YYYY') AS fecha_cumplimiento_texto_t,
-	// 								 TO_CHAR(fecha_fin, 'DD/MM/YYYY') AS fecha_fin_t
-	// 									FROM tareas ORDER BY fecha_fin DESC, fecha_cumplimiento ASC;`)
-	// const Tareas = tareas.rows;
 
 	const tabla_metas_objetivos_tareas = await pool.query(`
 			SELECT 

@@ -29,6 +29,7 @@ const direcciones = {
         metas:{
             index: `${raiz_gestion_tiempo}/metas/index`,
             add: `${raiz_gestion_tiempo}/metas/metas_add`,
+            edit: `${raiz_gestion_tiempo}/metas/metas_edit`,
             add_plazo: `${raiz_gestion_tiempo}/metas/metas_add_fecha_plazo`
         },
 
