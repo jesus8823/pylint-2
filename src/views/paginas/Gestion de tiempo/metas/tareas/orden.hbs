@@ -1,16 +1,66 @@
 {{> menu_gestion_tiempo}}
 
+
+
+
+
+
+
+<div class="btn_metas_contenedor">
+	<button class="btn_metas insertar_fechas_btn" onclick="aparecer_desaparecer(`none_insertar_fechas`)">Insertar Fechas</button>
+</div>
+
 <div class="tareas_orden_contenedor">
-	<div class="tareas__orden_tarjetas_contenedor">
-		<!-- <div class="contenedor_titulo">
-			<h2>{{fecha_cumplimiento_t}}</h2>
-		</div> -->
-		
+	<div class="titulo_orden">
+		<h2>Tareas Iniciadas</h2>
+	</div>
+
+		{{#each Tabla_metas_objetivos_tareas_iniciadas}}
+	<div class="contenedor_tareas">
+		<h3 class="meta_ordenar">{{m_titulo}}</h3>
+		<p class="objetivo_ordenar">{{o_titulo}}</p>
+		<li>{{t_titulo}} 
+			<strong id="none_fechas" class="fecha_plazo_objetivo_tarea C-rojo_suave">{{fecha_inicio_t}}</strong>
+			<strong id="none_fechas" class="fecha_plazo_objetivo_tarea plazo">{{fecha_cumplimiento_t}}</strong>
+			{{#eq fecha_cumplimiento_t null}}
+					<a href="{{../gestion_tiempo_links.tareas.add_fecha_plazo}}/{{id_tareas}}/{{id_objetivos}}/{{id_metas}}" id="none_insertar_fechas" class="none sub_btn btn_pequeño B-naranja">configurar plazo</a>
+					{{else}}
+					{{#eq fecha_inicio_t null}}
+					<a href="{{../gestion_tiempo_links.tareas.add_fecha_inicio}}/{{id_tareas}}/{{id_objetivos}}/{{id_metas}}" id="none_insertar_fechas" class="none sub_btn btn_pequeño B-rojo">Iniciar</a>
+					{{else}}
+					{{#eq fecha_fin_t null}}
+					<a href="{{../gestion_tiempo_links.tareas.add_fecha_fin}}/{{id_tareas}}/{{id_objetivos}}/{{id_metas}}" id="none_insertar_fechas" class="none sub_btn btn_pequeño B-verde">Fin</a>
+					{{/eq}}
+					{{/eq}}
+					{{/eq}}
+		</li>
+	</div>
+	{{/each}}
+
+	<div class="linea_orden"></div>
+
+	<div class="titulo_orden">
+		<h2>Tareas Por Hacer</h2>
+	</div>
+
 	{{#each Tabla_metas_objetivos_tareas}}
 	<div class="contenedor_tareas">
-		<h2 class="meta_ordenar">{{m_titulo}}</h2>
+		<h3 class="meta_ordenar">{{m_titulo}}</h3>
 		<p class="objetivo_ordenar">{{o_titulo}}</p>
-		<li>{{t_titulo}} {{fecha_cumplimiento_t}}</li>
+		<li>{{t_titulo}} 
+			<strong id="none_fechas" class="fecha_plazo_objetivo_tarea plazo">{{fecha_cumplimiento_t}}</strong>
+			{{#eq fecha_cumplimiento_t null}}
+					<a href="{{../gestion_tiempo_links.tareas.add_fecha_plazo}}/{{id_tareas}}/{{id_objetivos}}/{{id_metas}}" id="none_insertar_fechas" class="none sub_btn btn_pequeño B-naranja">configurar plazo</a>
+					{{else}}
+					{{#eq fecha_inicio_t null}}
+					<a href="{{../gestion_tiempo_links.tareas.add_fecha_inicio}}/{{id_tareas}}/{{id_objetivos}}/{{id_metas}}" id="none_insertar_fechas" class="none sub_btn btn_pequeño B-rojo">Iniciar</a>
+					{{else}}
+					{{#eq fecha_fin_t null}}
+					<a href="{{../gestion_tiempo_links.tareas.add_fecha_fin}}/{{id_tareas}}/{{id_objetivos}}/{{id_metas}}" id="none_insertar_fechas" class="none sub_btn btn_pequeño B-verde">Fin</a>
+					{{/eq}}
+					{{/eq}}
+					{{/eq}}
+		</li>
 	</div>
 	{{/each}}
 </div>

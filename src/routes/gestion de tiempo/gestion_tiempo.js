@@ -385,10 +385,13 @@ router.get("/metas/tareas/orden", async(req,res)=>{
 
 	const tabla_metas_objetivos_tareas = await pool.query(`
 			SELECT 
+				tareas.id AS id_tareas,
 				tareas.titulo AS T_titulo,
 				tareas.fecha_fin AS T_fecha_fin,
 				tareas.fecha_cumplimiento AS T_fecha_cumplimiento,
 				TO_CHAR(tareas.fecha_cumplimiento, 'DD/MM/YYYY') AS fecha_cumplimiento_t,
+				TO_CHAR(tareas.fecha_inicio, 'DD/MM/YYYY') AS fecha_inicio_t,
+				TO_CHAR(tareas.fecha_fin, 'DD/MM/YYYY') AS fecha_fin_t,
 
 				tareas.objetivos AS id_objetivos,
 				tareas.meta AS id_metas,
@@ -411,7 +414,38 @@ router.get("/metas/tareas/orden", async(req,res)=>{
 
 
 
-	res.render(`${gestion_tiempo_DV.tareas.orden}`,{Tabla_metas_objetivos_tareas})
+
+
+		const tabla_metas_objetivos_tareas_iniciadas = await pool.query(`
+			SELECT 
+				tareas.id AS id_tareas,
+				tareas.titulo AS T_titulo,
+				tareas.fecha_fin AS T_fecha_fin,
+				tareas.fecha_cumplimiento AS T_fecha_cumplimiento,
+				TO_CHAR(tareas.fecha_cumplimiento, 'DD/MM/YYYY') AS fecha_cumplimiento_t,
+				TO_CHAR(tareas.fecha_inicio, 'DD/MM/YYYY_HH:MM') AS fecha_inicio_t,
+				TO_CHAR(tareas.fecha_fin, 'DD/MM/YYYY') AS fecha_fin_t,
+
+				tareas.objetivos AS id_objetivos,
+				tareas.meta AS id_metas,
+
+				objetivos.id AS id_objetivos,
+				objetivos.titulo AS O_titulo,
+
+				metas.id AS id_metas,
+				metas.titulo AS M_titulo
+
+					FROM tareas
+
+				JOIN objetivos ON tareas.objetivos = objetivos.id
+				JOIN metas ON tareas.meta = metas.id
+
+				WHERE tareas.fecha_fin IS NULL AND tareas.fecha_inicio IS NOT NULL
+				ORDER BY tareas.fecha_inicio DESC;
+		`)
+	const Tabla_metas_objetivos_tareas_iniciadas = tabla_metas_objetivos_tareas_iniciadas.rows;
+
+	res.render(`${gestion_tiempo_DV.tareas.orden}`,{Tabla_metas_objetivos_tareas,Tabla_metas_objetivos_tareas_iniciadas,gestion_tiempo_links})
 });;
 
 
