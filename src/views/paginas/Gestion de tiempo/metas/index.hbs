@@ -2,6 +2,7 @@
 
 <div class="btn_metas_contenedor">
 	<a href="{{gestion_tiempo_links.metas.add}}" class="btn_metas nueva_meta_btn">Nueva Meta</a>
+	<button class="btn_metas agregar_btn" onclick="aparecer_desaparecer(`none_agregar`)">Agregar</button>
 	<button class="btn_metas insertar_fechas_btn" onclick="aparecer_desaparecer(`none_insertar_fechas`)">Insertar Fechas</button>
 	<button class="btn_metas fechas_btn" onclick="aparecer_desaparecer(`none_fechas`)">Ver Fechas</button>
 	<button class="btn_metas config_btn" onclick="aparecer_desaparecer(`none_config`)">Config</button>
@@ -42,7 +43,7 @@
 				{{/eq}}
 			</div>
 		</div>
-		<a href="{{../gestion_tiempo_links.objetivos.add}}/{{id}}" id="none_config" class="none sub_btn B-verde">Agregar Objetivo</a>
+		<a href="{{../gestion_tiempo_links.objetivos.add}}/{{id}}" id="none_agregar" class="none sub_btn B-verde">Agregar Objetivo</a>
 		<div class="objetivos_contenedor">
 			{{#each ../Objetivos}}
 			{{#eq meta ../id}}
@@ -66,9 +67,9 @@
 
 					<strong id="none_fechas" class="fecha_plazo_objetivo_tarea none C-verde">{{fecha_fin_t}}</strong>
 					<strong id="none_fechas" class="fecha_plazo_objetivo_tarea none plazo">{{fecha_cumplimiento_texto_t}}</strong> 
-					<a href="" id="none_config" class="none sub_btn B-naranja">Editar</a>
+					<a href="{{../../gestion_tiempo_links/objetivos/edit}}/{{id}}" id="none_config" class="none sub_btn B-naranja">Editar</a>
 				</h3>
-				<a href="{{../../gestion_tiempo_links.tareas.add}}/{{id}}/{{../id}}" id="none_config" class="none sub_btn B-verde">Agregar Tarea</a>
+				<a href="{{../../gestion_tiempo_links.tareas.add}}/{{id}}/{{../id}}" id="none_agregar" class="none sub_btn B-verde">Agregar Tarea</a>
 				<div class="tareas">
 				{{#each ../../Tareas}}
 				{{#eq objetivos ../id}}
@@ -87,13 +88,13 @@
 					{{/eq}}
 					{{/eq}}
 					<strong id="none_fechas" class="fecha_plazo_objetivo_tarea none plazo">{{fecha_cumplimiento_texto_t}}</strong> 
-					<a href="" id="none_config" class="none sub_btn B-naranja">Editar</a>
+					<a href="{{../../../gestion_tiempo_links.tareas.edit}}/{{id}}/{{../id}}" id="none_config" class="none sub_btn B-naranja">Editar</a>
 				</li>
 				{{else}}
 				<li class="C-verde">{{titulo}} 
 					<strong id="none_fechas" class="fecha_plazo_objetivo_tarea none C-verde">{{fecha_fin_t}}</strong>
 					<strong id="none_fechas" class="fecha_plazo_objetivo_tarea none plazo">{{fecha_cumplimiento_texto_t}}</strong>  
-					<a href="" id="none_config" class="none sub_btn B-naranja">Editar</a>
+					<a href="{{../../../gestion_tiempo_links.tareas.edit}}/{{id}}/{{../id}}" id="none_config" class="none sub_btn B-naranja">Editar</a>
 				</li>
 				{{/eq}}
 				{{/eq}}

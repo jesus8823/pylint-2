@@ -31,12 +31,14 @@ const links = {
         },
         objetivos:{
             add: `${GT}/metas/objetivos/add`,
+            edit: `${GT}/metas/objetivos/edit`,
             add_fecha_inicio: `${GT}/metas/objetivos/add/fecha_inicio`,
             add_fecha_fin: `${GT}/metas/objetivos/add/fecha_fin`,
             add_fecha_plazo: `${GT}/metas/objetivos/add/fecha_plazo`
         },
         tareas:{
             add: `${GT}/metas/tareas/add`,
+            edit: `${GT}/metas/tareas/edit`,
             add_fecha_inicio: `${GT}/metas/tareas/add/fecha_inicio`,
             add_fecha_fin: `${GT}/metas/tareas/add/fecha_fin`,
             add_fecha_plazo: `${GT}/metas/tareas/add/fecha_plazo`

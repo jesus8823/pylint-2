@@ -1,0 +1,35 @@
+{{> menu_gestion_tiempo}}
+<div class="contenedor_titulo">
+	<h2 class="titulo_formulario_metas C-blanco B-gris_oscuro">Editar Objetivo</h2>
+</div>
+
+
+<form action="/gestion_tiempo/metas/objetivos/edit/{{Datos.id}}" method="POST" class="formulario_metas_contenedor">
+	<div>
+		<p>Titulo</p>
+		<input type="text" name="titulo" required placeholder="Titulo de Meta" class="C-blanco" value="{{Datos.titulo}}">
+	</div>
+	
+	<div>
+		<p>descripcion</p>
+		<textarea placeholder="descripcion" name="descripcion" class="C-blanco">{{Datos.descripcion}}</textarea>
+	</div>
+	
+	<div>
+		<p>Fecha Inicio</p>
+		<input type="datetime-local" id="fecha_inicio" name="fecha_inicio" class="C-rojo" value="{{Datos.fecha_inicio_f}}">
+	</div>
+	
+	<div>
+		<p>Fecha Plazo</p>
+		<input type="datetime-local" id="fecha_plazo" name="fecha_plazo" class="C-naranja" value="{{Datos.fecha_plazo_f}}">
+	</div>
+
+	<div>
+		<p>Fecha Fin</p>
+		<input type="datetime-local" id="fecha_fin" name="fecha_fin" class="C-verde" value="{{Datos.fecha_fin_f}}">
+	</div>
+
+	
+	<button>Enviar</button>
+</form>

@@ -133,11 +133,6 @@ router.get("/metas/add/fecha_plazo/:id",async (req,res)=>{
 	res.render(`${gestion_tiempo_DV.metas.add_plazo}`,{id})
 });
 
-
-router.get("/metas/edit/:id",async (req,res)=>{
-	res.render(`${gestion_tiempo_DV.metas.edit}`)
-})
-
 router.post("/metas/add/fecha_plazo/:id",async (req,res)=>{
 	const {id} = req.params;
 	const {fecha_plazo} = req.body;
@@ -193,6 +188,50 @@ router.post("/metas/objetivos/add/:id", async(req,res)=>{
 	res.redirect("/gestion_tiempo/metas");
 });
 
+
+router.get("/metas/objetivos/edit/:id", async (req,res)=>{
+	const  {id} = req.params;
+	const datos = await pool.query(`SELECT*,
+									TO_CHAR(fecha_inicio, 'YYYY-MM-DD"T"HH24:MI') AS fecha_inicio_f,
+									TO_CHAR(fecha_cumplimiento, 'YYYY-MM-DD"T"HH24:MI') AS fecha_plazo_f,
+									TO_CHAR(fecha_fin, 'YYYY-MM-DD"T"HH24:MI') AS fecha_fin_f
+									FROM objetivos WHERE id = $1;`,[id]);
+	const Datos = datos.rows[0];
+	res.render(`${gestion_tiempo_DV.objetivos.edit}`, {Datos})
+		
+});
+
+router.post("/metas/objetivos/edit/:id",async(req,res)=>{
+	const {id} = req.params;
+		const {titulo,descripcion,fecha_inicio,fecha_plazo,fecha_fin} = req.body;
+
+	const datos = {
+		titulo,
+		descripcion,
+		fecha_inicio,
+		fecha_plazo,
+		fecha_fin,
+		id
+	};
+
+	if (datos.fecha_inicio == ""){
+		datos.fecha_inicio = null
+	}
+	if (datos.fecha_plazo == ""){
+		datos.fecha_plazo = null
+	}
+	if (datos.fecha_fin == ""){
+		datos.fecha_fin = null
+	}
+	await pool.query(`UPDATE objetivos SET titulo = $1, descripcion = $2, fecha_inicio = $3, fecha_cumplimiento = $4, fecha_fin = $5 WHERE id = $6`,[...Object.values(datos)])
+	res.redirect("/gestion_tiempo/metas");
+});
+
+
+
+
+
+
 router.get("/metas/objetivos/add/fecha_inicio/:id", async(req,res)=>{
 	const {id} = req.params;
 	await pool.query(`UPDATE objetivos SET fecha_inicio = now() WHERE id = $1`,[id]);
@@ -214,10 +253,16 @@ router.post("/metas/objetivos/add/fecha_plazo/:id",async (req,res)=>{
 	const {id} = req.params;
 	const {fecha_plazo} = req.body;
 
-
 	await pool.query(`UPDATE objetivos SET fecha_cumplimiento = $1 WHERE id = $2`,[fecha_plazo,id])
 	res.redirect("/gestion_tiempo/metas");
 });
+
+
+
+
+
+
+
 
 
 
@@ -262,6 +307,48 @@ router.post("/metas/tareas/add/:ido/:idm", async(req,res)=>{
 		(DEFAULT,$1,$2,$3,$4,now(),$5,$6,NULL)`,[...Object.values(datos)]);
 	res.redirect("/gestion_tiempo/metas")
 })
+
+router.get("/metas/tareas/edit/:idt/:ido", async (req,res)=>{
+	const  {idt,ido} = req.params;
+	const datos = await pool.query(`SELECT*,
+									TO_CHAR(fecha_inicio, 'YYYY-MM-DD"T"HH24:MI') AS fecha_inicio_f,
+									TO_CHAR(fecha_cumplimiento, 'YYYY-MM-DD"T"HH24:MI') AS fecha_plazo_f,
+									TO_CHAR(fecha_fin, 'YYYY-MM-DD"T"HH24:MI') AS fecha_fin_f
+									FROM tareas WHERE id = $1 AND objetivos = $2;`,[idt,ido]);
+	const Datos = datos.rows[0];
+	res.render(`${gestion_tiempo_DV.tareas.edit}`, {Datos,idt,ido})
+		
+});
+
+router.post("/metas/objetivos/edit/:idt/:ido",async(req,res)=>{
+	const {idt,ido} = req.params;
+		const {titulo,descripcion,fecha_inicio,fecha_plazo,fecha_fin} = req.body;
+
+	const datos = {
+		titulo,
+		descripcion,
+		fecha_inicio,
+		fecha_plazo,
+		fecha_fin,
+		idt,
+		ido
+	};
+
+	if (datos.fecha_inicio == ""){
+		datos.fecha_inicio = null
+	}
+	if (datos.fecha_plazo == ""){
+		datos.fecha_plazo = null
+	}
+	if (datos.fecha_fin == ""){
+		datos.fecha_fin = null
+	}
+	await pool.query(`UPDATE tareas 
+					  SET titulo = $1, descripcion = $2, fecha_inicio = $3, fecha_cumplimiento = $4, fecha_fin = $5 
+					  WHERE id = $6 AND objetivos = $7;`,[...Object.values(datos)])
+	res.redirect("/gestion_tiempo/metas");
+});
+
 
 
 

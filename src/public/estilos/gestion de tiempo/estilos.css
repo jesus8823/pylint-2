@@ -58,6 +58,13 @@
 	background: #041a00;
 }
 
+.agregar_btn{
+	background: #0b6c00;
+	transition: 0.5s;
+}.agregar_btn:hover{
+	background:#042400;
+}
+
 .insertar_fechas_btn{
 	background: #013d73;
 	transition: 0.5s;
@@ -80,7 +87,7 @@
 }
 
 .sub_btn{
-	font-size: 18px;
+	font-size: 15px;
 	padding: 5px 7px;
 	color: #bfbfbf;
 	border: none;

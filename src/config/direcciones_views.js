@@ -35,6 +35,7 @@ const direcciones = {
 
         objetivos:{
             add: `${raiz_gestion_tiempo}/metas/objetivos/add`,
+            edit: `${raiz_gestion_tiempo}/metas/objetivos/objetivos_edit`,
             add_plazo: `${raiz_gestion_tiempo}/metas/objetivos/objetivos_add_fecha_plazo`
             
 
@@ -42,6 +43,7 @@ const direcciones = {
 
         tareas:{
             add: `${raiz_gestion_tiempo}/metas/tareas/add`,
+            edit: `${raiz_gestion_tiempo}/metas/tareas/tareas_edit`,
             add_plazo: `${raiz_gestion_tiempo}/metas/tareas/tareas_add_fecha_plazo`,
             orden: `${raiz_gestion_tiempo}/metas/tareas/orden`
 
