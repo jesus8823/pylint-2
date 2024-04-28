@@ -1,0 +1,32 @@
+{{> menu_gestion_tiempo}}
+
+<div class="btn_metas_contenedor">
+	<a class="btn_metas agregar_btn" href="{{gestion_tiempo_links.horario.add}}">Agregar</a>
+</div>
+
+<div class="contenedor_horarios">
+	{{#each Horarios}}
+	<div class="horario">
+		<h3 class="titulo_horarios"><a href="{{../gestion_tiempo_links.horario.individual}}/{{id}}">{{titulo}}</a></h3>
+		
+		<p class="titulo_tareas_horarios">Tareas</p>
+		<div class="contenedor_tareas">
+		{{#each ../Horario_registro}}
+		{{#eq horario_id ../id}}
+			<li>
+				<strong class="hora_inicio_horarios">{{hora_inicio}}</strong>
+				_
+				<strong class="hora_fin_horarios">{{hora_fin}}</strong>
+				<br>
+				{{titulo_tarea}}
+			</li>
+		{{/eq}}
+		{{/each}}
+		</div>
+
+		<div class="descripcion_horario">
+			<p>{{descripcion}}</p>
+		</div>
+	</div>
+	{{/each}}
+</div>

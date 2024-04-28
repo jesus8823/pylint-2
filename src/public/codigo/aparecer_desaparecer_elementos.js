@@ -1,5 +1,5 @@
 const aparecer_desaparecer = (id)=>{
-	 var elementos = document.querySelectorAll(`[id="${id}"]`);
+	 let elementos = document.querySelectorAll(`[id="${id}"]`);
 
     // Recorrer todos los elementos
     elementos.forEach(elemento => {
@@ -7,3 +7,6 @@ const aparecer_desaparecer = (id)=>{
         elemento.classList.toggle("none");
     });
 }
+
+
+

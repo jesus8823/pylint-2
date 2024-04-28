@@ -26,6 +26,14 @@ const direcciones = {
     gestion_tiempo_DV: {
         index: './paginas/Gestion de tiempo/index',
 
+        horario:{
+            todos: `${raiz_gestion_tiempo}/horario/index`,
+            add:`${raiz_gestion_tiempo}/horario/horario_add`,
+            individual: `${raiz_gestion_tiempo}/horario/horario_individual`,
+            add_tarea_ind: `${raiz_gestion_tiempo}/horario/horario_individual_add`,
+            edit_tarea_ind: `${raiz_gestion_tiempo}/horario/horario_individual_edit`
+        },
+
         metas:{
             index: `${raiz_gestion_tiempo}/metas/index`,
             add: `${raiz_gestion_tiempo}/metas/metas_add`,

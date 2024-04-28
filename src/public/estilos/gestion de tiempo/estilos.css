@@ -10,6 +10,9 @@
 .B-gris_oscuro{
 	background: #0c0c0c;
 }
+.B-azul_claro{
+	background: #106bbd;
+}
 .C-verde{
 	color:green;
 }
@@ -25,6 +28,7 @@
 .C-rojo_suave{
 	color: #f74c4c;
 }
+
 
 
 .btn_metas_contenedor{
@@ -73,6 +77,13 @@
 	transition: 0.5s;
 }.insertar_fechas_btn:hover{
 	background: #001f3b;
+}
+
+.horario_btn{
+	background: #106bbd;
+	transition: 0.5s;
+}.horario_btn:hover{
+	background: #003564;
 }
 
 .fechas_btn{

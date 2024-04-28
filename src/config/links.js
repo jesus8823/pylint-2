@@ -15,12 +15,18 @@ const links = {
             add: '/finanzas/registros/add',
             add_ingresos: '/finanzas/registros/add/ingresos',
             add_gastos: '/finanzas/registros/add/gastos'
-        },
+        }
     },
 
-
-
     gestion_tiempo_links: {
+
+        horario: {
+            index: `${GT}/horarios`,
+            add: `${GT}/horarios/add`,
+            individual: `${GT}/horario/individual`,
+            add_tarea_ind: `${GT}/horario/individual/add`,
+            edit_tarea_ind: `${GT}/horario/individual/edit`
+        },
         
         metas: {
             add: `${GT}/metas/add`,
@@ -37,6 +43,7 @@ const links = {
             add_fecha_plazo: `${GT}/metas/objetivos/add/fecha_plazo`
         },
         tareas:{
+            orden:`${GT}/metas/tareas/orden`,
             add: `${GT}/metas/tareas/add`,
             edit: `${GT}/metas/tareas/edit`,
             add_fecha_inicio: `${GT}/metas/tareas/add/fecha_inicio`,
@@ -44,10 +51,7 @@ const links = {
             add_fecha_plazo: `${GT}/metas/tareas/add/fecha_plazo`
         },
 
-    }    
-        
-    
-    
-};
+    }
+}
 
 module.exports = links;

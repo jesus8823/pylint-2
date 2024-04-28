@@ -1,0 +1,42 @@
+{{> menu_gestion_tiempo}}
+
+<div class="btn_metas_contenedor">
+	<a class="btn_metas agregar_btn" href="{{gestion_tiempo_links.horario.add_tarea_ind}}/{{id}}">Agregar</a>
+	<button class="btn_metas insertar_fechas_btn" onclick="aparecer_desaparecer(`none_actividad`)">Actividad</button>
+	<button class="btn_metas config_btn" onclick="aparecer_desaparecer(`none_config`)">Config</button>
+</div>
+
+<div class="horario_ind_contenedor">
+	<h3>Horario </h3>
+	{{#each Datos}}
+	<div class="contenedor_tareas_ind">
+		<p class="tipo_tarea">{{tipo}}</p>
+		<p class="meta_tarea_horario">{{meta}}</p>
+		<p class="objetivo_tarea_horario">{{objetivo}}</p>
+		<li>
+			{{titulo_tarea}}
+			<strong class="hora_inicio_horarios">{{hora_inicio}}</strong>
+			<strong class="hora_fin_horarios">{{hora_fin}}</strong>
+			
+			{{#if ../validacion_actividad}}
+			<a href="/gestion_tiempo/actividad/registrar/{{id}}" id="none_actividad" class="none sub_btn btn_pequeño B-rojo">Iniciar</a>
+			{{else}}
+			{{#eq ../validacion_tarea titulo_tarea}}
+			<a href="/gestion_tiempo/actividad/finalizar/{{id}}" id="none_actividad" class="none sub_btn btn_pequeño B-verde">Fin</a>
+			{{/eq}}
+			{{/if}}
+
+			<a href="{{../gestion_tiempo_links.horario.edit_tarea_ind}}/{{id}}" id="none_config" class="none sub_btn B-naranja">Editar</a>
+
+		</li>
+	</div>
+	{{/each}}
+</div>
+
+
+
+<!-- <div class="horario_ind_orden_contenedor">
+	<div class="metas_horario"></div>
+	<div class="habitos_horario"></div>
+	<div class="otras_tareas_horario"></div>
+</div> -->

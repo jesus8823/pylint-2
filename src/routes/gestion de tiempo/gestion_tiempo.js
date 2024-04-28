@@ -366,13 +366,12 @@ router.get("/metas/tareas/add/fecha_fin/:id/:ido/:idm", async(req,res)=>{
 
 router.get("/metas/tareas/add/fecha_plazo/:id/:ido/:idm",async (req,res)=>{
 	const {id,ido,idm} = req.params;
-	res.render(`${gestion_tiempo_DV.tareas.add_plazo}`,{id,ido,idm})
+	res.render(`${gestion_tiempo_DV.tareas.add_plazo}`,{id,ido,idm});
 });
 
 router.post("/metas/tareas/add/fecha_plazo/:id/:ido/:idm",async (req,res)=>{
 	const {id,ido,idm} = req.params;
 	const {fecha_plazo} = req.body;
-	console.log(fecha_plazo)
 
 	await pool.query(`UPDATE tareas SET fecha_cumplimiento = $1 WHERE meta = $2 AND objetivos = $3 AND id = $4`,[fecha_plazo,idm,ido,id]);
 	res.redirect("/gestion_tiempo/metas");
@@ -413,40 +412,196 @@ router.get("/metas/tareas/orden", async(req,res)=>{
 	const Tabla_metas_objetivos_tareas = tabla_metas_objetivos_tareas.rows;
 
 
+	const horarios = await pool.query(`SELECT*FROM horarios ORDER BY titulo`);
+	const Horarios = horarios.rows
+
+	res.render(`${gestion_tiempo_DV.tareas.orden}`,{Tabla_metas_objetivos_tareas,gestion_tiempo_links,Horarios})
+});
 
 
 
-		const tabla_metas_objetivos_tareas_iniciadas = await pool.query(`
-			SELECT 
-				tareas.id AS id_tareas,
-				tareas.titulo AS T_titulo,
-				tareas.fecha_fin AS T_fecha_fin,
-				tareas.fecha_cumplimiento AS T_fecha_cumplimiento,
-				TO_CHAR(tareas.fecha_cumplimiento, 'DD/MM/YYYY') AS fecha_cumplimiento_t,
-				TO_CHAR(tareas.fecha_inicio, 'DD/MM/YYYY_HH:MM') AS fecha_inicio_t,
-				TO_CHAR(tareas.fecha_fin, 'DD/MM/YYYY') AS fecha_fin_t,
+router.get("/horarios", async(req,res)=>{
+	const horarios = await pool.query(`SELECT*FROM horarios ORDER BY titulo`);
+	const Horarios = horarios.rows;
 
-				tareas.objetivos AS id_objetivos,
-				tareas.meta AS id_metas,
+	const horario_registro = await pool.query(`SELECT*FROM horario_registro ORDER BY hora_inicio`);
+	const Horario_registro = horario_registro.rows;
+	res.render(`${gestion_tiempo_DV.horario.todos}`, {gestion_tiempo_links,Horarios,Horario_registro});
+});
 
-				objetivos.id AS id_objetivos,
-				objetivos.titulo AS O_titulo,
+router.get("/horarios/add", async(req,res)=>{
+	res.render(`${gestion_tiempo_DV.horario.add}`);
+});
 
-				metas.id AS id_metas,
-				metas.titulo AS M_titulo
+router.post("/horarios/add", async(req,res)=>{
+	const {titulo,descripcion} = req.body;
+	const datos = {
+		titulo,
+		descripcion
+	};
+await pool.query(`INSERT INTO horarios (
+		id,
+		titulo,
+		descripcion,
+		prioridad
+		)
 
-					FROM tareas
+		VALUES
+		(DEFAULT,$1,$2,NULL)`,[...Object.values(datos)]);
 
-				JOIN objetivos ON tareas.objetivos = objetivos.id
-				JOIN metas ON tareas.meta = metas.id
+	res.redirect(gestion_tiempo_links.horario.index);
+})
 
-				WHERE tareas.fecha_fin IS NULL AND tareas.fecha_inicio IS NOT NULL
-				ORDER BY tareas.fecha_inicio DESC;
-		`)
-	const Tabla_metas_objetivos_tareas_iniciadas = tabla_metas_objetivos_tareas_iniciadas.rows;
+router.get("/horario/individual/:id", async(req,res)=>{
+	const {id} = req.params;
+	const datos = await pool.query(`SELECT*FROM horario_registro WHERE horario_id = $1 ORDER BY hora_inicio`,[id]);
+	const Datos = datos.rows;
 
-	res.render(`${gestion_tiempo_DV.tareas.orden}`,{Tabla_metas_objetivos_tareas,Tabla_metas_objetivos_tareas_iniciadas,gestion_tiempo_links})
-});;
+	const validar_actividad = await pool.query(`SELECT  titulo_tarea,validar FROM actividad WHERE validar = true`)
+	const Validar_actividad = validar_actividad.rows[0];
 
+	let validacion_actividad="";
+	let validacion_tarea="";
+
+	if (Validar_actividad != undefined) {
+		validacion_actividad = Validar_actividad.validar;
+		validacion_tarea = Validar_actividad.titulo_tarea;
+	}
+
+	if (validacion_actividad != true) {
+		validacion_actividad = true;
+	}else{
+		validacion_actividad = false;
+	}
+
+	
+
+	res.render(`${gestion_tiempo_DV.horario.individual}`, {id, gestion_tiempo_links,Datos, validacion_actividad,validacion_tarea});
+});
+
+router.get("/horario/individual/add/:id", async(req,res)=>{
+	const {id} = req.params;
+	res.render(`${gestion_tiempo_DV.horario.add_tarea_ind}`, {id});
+});
+
+router.post("/horario/individual/add/:id", async(req,res)=>{
+	let {id} = req.params;
+	const{titulo, hora_inicio, hora_fin} = req.body;
+
+	const datos = {
+		titulo,
+		hora_inicio,
+		hora_fin,
+		tipo_tarea:"tarea aparte",
+		id
+	};
+
+	await pool.query(`INSERT INTO horario_registro (
+		id,
+		meta,
+		objetivo,
+		titulo_tarea,
+		hora_inicio,
+		hora_fin,
+		tipo,
+		horario_id
+		)
+
+		VALUES
+		(DEFAULT,NULL,NULL,$1,$2,$3,$4,$5);`,[...Object.values(datos)]);
+
+	res.redirect(`${gestion_tiempo_links.horario.individual}/${datos.id}`);
+});
+
+router.post("/horario/add/tarea", async(req,res)=>{
+	const{meta,objetivo,titulo, hora_inicio, hora_fin,id_horario} = req.body;
+	const datos = {
+		meta,
+		objetivo,
+		titulo,
+		hora_inicio,
+		hora_fin,
+		tipo_tarea:"Tarea Meta",
+		id_horario
+	};
+
+	await pool.query(`INSERT INTO horario_registro (
+		id,
+		meta,
+		objetivo,
+		titulo_tarea,
+		hora_inicio,
+		hora_fin,
+		tipo,
+		horario_id
+		)
+
+		VALUES
+		(DEFAULT,$1,$2,$3,$4,$5,$6,$7);`,[...Object.values(datos)]);
+
+	res.redirect(`${gestion_tiempo_links.tareas.orden}`);
+});
+
+router.get("/horario/individual/edit/:id", async (req,res)=>{
+	const {id} = req.params;
+	const datos = await pool.query(`SELECT*FROM horario_registro WHERE id = $1`,[id]);
+	const  Datos = datos.rows[0];
+
+	res.render(`${gestion_tiempo_DV.horario.edit_tarea_ind}`, {Datos, id});
+
+});
+
+router.post("/horario/individual_edit/:id", async (req,res)=>{
+	const {id} = req.params;
+	const {titulo,hora_inicio,hora_fin} = req.body;
+	const datos = {
+		titulo,
+		hora_inicio,
+		hora_fin,
+		id
+	}
+	const horario = await pool.query(`SELECT id,horario_id FROM horario_registro WHERE id = $1`,[id]);
+	const Horario = horario.rows[0];
+
+	await pool.query(`UPDATE horario_registro SET titulo_tarea = $1 ,hora_inicio = $2, hora_fin = $3 WHERE id = $4`,[...Object.values(datos)])
+
+	res.redirect(`${gestion_tiempo_links.horario.individual}/${Horario.horario_id}`);
+
+});
+
+router.get("/actividad/registrar/:id", async (req,res)=>{
+	const {id} = req.params;
+	const horario_datos = await pool.query(`SELECT meta,objetivo,titulo_tarea,tipo,horario_id FROM horario_registro WHERE id = $1`,[id]);
+	const Horario_datos = horario_datos.rows[0];
+
+	await pool.query(`INSERT INTO actividad (
+		id,
+		meta,
+		objetivo,
+		titulo_tarea,
+		fecha_inicio,
+		fecha_fin,
+		validar,
+		tipo
+		)
+
+		VALUES
+		(DEFAULT,$1,$2,$3,now(),NULL,true,$4);`,[
+												Horario_datos.meta,
+												Horario_datos.objetivo,
+												Horario_datos.titulo_tarea,
+												Horario_datos.tipo
+												]);
+	res.redirect(`${gestion_tiempo_links.horario.individual}/${Horario_datos.horario_id}`)
+});
+
+router.get("/actividad/finalizar/:id", async (req,res)=>{
+	const {id} = req.params;
+	const horario_datos = await pool.query(`SELECT horario_id FROM horario_registro WHERE id = $1`,[id]);
+	const Horario_datos = horario_datos.rows[0];
+
+	await pool.query(`UPDATE actividad SET fecha_fin = now(),validar = false WHERE validar = true`);
+	res.redirect(`${gestion_tiempo_links.horario.individual}/${Horario_datos.horario_id}`)
+});
 
 module.exports = router;

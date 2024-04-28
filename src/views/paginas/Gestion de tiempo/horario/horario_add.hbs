@@ -1,0 +1,19 @@
+{{> menu_gestion_tiempo}}
+
+<div class="contenedor_titulo">
+	<h2 class="titulo_formulario_metas C-blanco B-gris_oscuro">Agregar Horario</h2>
+</div>
+
+<form action="/gestion_tiempo/horarios/add" method="POST" class="formulario_metas_contenedor">
+	<div>
+		<p>Titulo</p>
+		<input type="text" name="titulo" required placeholder="Titulo de Tarea" class="C-blanco">
+	</div>
+	
+	<div>
+		<p>descripcion</p>
+		<textarea placeholder="descripcion" name="descripcion" class="C-blanco"></textarea>
+	</div>
+	
+	<button>Enviar</button>
+</form>
