@@ -38,9 +38,42 @@ CREATE SEQUENCE tareas_secuencia;
 ALTER TABLE tareas ALTER COLUMN id SET DEFAULT NEXTVAL('tareas_secuencia');
 
 
+CREATE TABLE horarios (
+	id INT PRIMARY KEY,
+	titulo TEXT,
+	descripcion TEXT,
+	prioridad BOOLEAN
+);
+CREATE SEQUENCE horarios_secuencia;
+ALTER TABLE horarios ALTER COLUMN id SET DEFAULT NEXTVAL('horarios_secuencia');
 
 
+CREATE TABLE horario_registro(
+	id INT PRIMARY KEY,
+	meta TEXT,
+	objetivo TEXT,
+	titulo_tarea TEXT,
+	hora_inicio TIME,
+	hora_fin TIME,
+	tipo TEXT,
+	completada BOOLEAN,
+	horario_id INT REFERENCES horarios(id)
+);
+CREATE SEQUENCE horario_registro_secuencia;
+ALTER TABLE horario_registro ALTER COLUMN id SET DEFAULT NEXTVAL('horario_registro_secuencia');
 
+CREATE TABLE actividad(
+	id INT PRIMARY KEY,
+	meta TEXT,
+	objetivo TEXT,
+	titulo_tarea TEXT,
+	fecha_inicio TIMESTAMP,
+	fecha_fin TIMESTAMP,
+	validar BOOLEAN,
+	tipo TEXT
+);
+CREATE SEQUENCE actividad_secuencia;
+ALTER TABLE actividad ALTER COLUMN id SET DEFAULT NEXTVAL('actividad_secuencia');
 
 
 
