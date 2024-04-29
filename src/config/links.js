@@ -25,7 +25,8 @@ const links = {
             add: `${GT}/horarios/add`,
             individual: `${GT}/horario/individual`,
             add_tarea_ind: `${GT}/horario/individual/add`,
-            edit_tarea_ind: `${GT}/horario/individual/edit`
+            edit_tarea_ind: `${GT}/horario/individual/edit`,
+            delet_tarea_ind: `${GT}/horario/individual/delet`
         },
         
         metas: {

@@ -569,6 +569,19 @@ router.post("/horario/individual_edit/:id", async (req,res)=>{
 
 });
 
+router.get("/horario/individual/delet/:id", async (req,res)=>{
+	const {id} = req.params;
+
+	const horario = await pool.query(`SELECT id,horario_id FROM horario_registro WHERE id = $1`,[id]);
+	const Horario = horario.rows[0];
+	
+	await pool.query(`DELETE FROM horario_registro WHERE id = $1`,[id]);
+
+	res.redirect(`${gestion_tiempo_links.horario.individual}/${Horario.horario_id}`);
+});
+
+
+
 router.get("/actividad/registrar/:id", async (req,res)=>{
 	const {id} = req.params;
 	const horario_datos = await pool.query(`SELECT meta,objetivo,titulo_tarea,tipo,horario_id FROM horario_registro WHERE id = $1`,[id]);

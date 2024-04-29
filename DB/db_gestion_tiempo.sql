@@ -57,7 +57,8 @@ CREATE TABLE horario_registro(
 	hora_fin TIME,
 	tipo TEXT,
 	completada BOOLEAN,
-	horario_id INT REFERENCES horarios(id)
+	horario_id INT REFERENCES horarios(id),
+	tarea_id INT
 );
 CREATE SEQUENCE horario_registro_secuencia;
 ALTER TABLE horario_registro ALTER COLUMN id SET DEFAULT NEXTVAL('horario_registro_secuencia');
