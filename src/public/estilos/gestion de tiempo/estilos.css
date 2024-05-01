@@ -16,6 +16,9 @@
 .C-verde{
 	color:green;
 }
+.C-verde_claro{
+	color:#69d469;
+}
 .C-naranja{
 	color: orange;
 }
@@ -386,5 +389,8 @@
 
 .none{
 	display: none;
+}
+.tachar{
+	 text-decoration: line-through;
 }
 

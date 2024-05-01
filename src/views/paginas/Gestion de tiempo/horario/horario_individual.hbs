@@ -3,6 +3,7 @@
 <div class="btn_metas_contenedor">
 	<a class="btn_metas agregar_btn" href="{{gestion_tiempo_links.horario.add_tarea_ind}}/{{id}}">Agregar</a>
 	<button class="btn_metas insertar_fechas_btn" onclick="aparecer_desaparecer(`none_actividad`)">Actividad</button>
+	<button class="btn_metas horario_btn" onclick="aparecer_desaparecer(`none_completar`)">Completar</button>
 	<button class="btn_metas config_btn" onclick="aparecer_desaparecer(`none_config`)">Config</button>
 </div>
 
@@ -13,8 +14,16 @@
 		<p class="tipo_tarea">{{tipo}}</p>
 		<p class="meta_tarea_horario">{{meta}}</p>
 		<p class="objetivo_tarea_horario">{{objetivo}}</p>
+		
+		
+			
 		<li>
-			{{titulo_tarea}}
+			{{#if completada}}
+			<a class="tachar titulo_tarea_horario C-verde_claro" href="{{../gestion_tiempo_links.horario.desconfirmar_tarea_ind}}/{{id}}">{{titulo_tarea}}</a>
+			{{else}}
+			<a class="titulo_tarea_horario" href="{{../gestion_tiempo_links.horario.confirmar_tarea_aparte_ind}}/{{id}}">{{titulo_tarea}}</a>
+			{{/if}}
+			
 			<strong class="hora_inicio_horarios">{{hora_inicio}}</strong>
 			<strong class="hora_fin_horarios">{{hora_fin}}</strong>
 			
@@ -25,6 +34,19 @@
 			<a href="/gestion_tiempo/actividad/finalizar/{{id}}" id="none_actividad" class="none sub_btn btn_pequeño B-verde">Fin</a>
 			{{/eq}}
 			{{/if}}
+
+			{{#eq meta null}}
+			{{else}}
+			{{#validarTitulo titulo_tarea ../Validar_tarea_terminada}}
+			<a href="{{../gestion_tiempo_links.horario.desconfirmar_tarea_meta_ind}}/{{id}}/{{tarea_id}}" id="none_completar" class="none sub_btn B-rojo">Desconfirmar</a>
+			{{else}}
+			<a href="{{../gestion_tiempo_links.horario.confirmar_tarea_meta_ind}}/{{id}}/{{tarea_id}}" id="none_completar" class="none sub_btn B-azul_claro">Confirmar</a>
+			{{/validarTitulo}}
+
+			
+			
+
+			{{/eq}}
 
 			<a href="{{../gestion_tiempo_links.horario.edit_tarea_ind}}/{{id}}" id="none_config" class="none sub_btn B-naranja">Editar</a>
 			<a href="{{../gestion_tiempo_links.horario.delet_tarea_ind}}/{{id}}" id="none_config" class="none sub_btn B-rojo">Eliminar</a>

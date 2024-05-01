@@ -380,6 +380,10 @@ router.post("/metas/tareas/add/fecha_plazo/:id/:ido/:idm",async (req,res)=>{
 
 
 
+
+
+
+
 router.get("/metas/tareas/orden", async(req,res)=>{
 
 	const tabla_metas_objetivos_tareas = await pool.query(`
@@ -420,6 +424,20 @@ router.get("/metas/tareas/orden", async(req,res)=>{
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+//&Horario
+
 router.get("/horarios", async(req,res)=>{
 	const horarios = await pool.query(`SELECT*FROM horarios ORDER BY titulo`);
 	const Horarios = horarios.rows;
@@ -454,7 +472,7 @@ await pool.query(`INSERT INTO horarios (
 
 router.get("/horario/individual/:id", async(req,res)=>{
 	const {id} = req.params;
-	const datos = await pool.query(`SELECT*FROM horario_registro WHERE horario_id = $1 ORDER BY hora_inicio`,[id]);
+	const datos = await pool.query(`SELECT*FROM horario_registro WHERE horario_id = $1 ORDER BY completada ASC,hora_inicio ASC `,[id]);
 	const Datos = datos.rows;
 
 	const validar_actividad = await pool.query(`SELECT  titulo_tarea,validar FROM actividad WHERE validar = true`)
@@ -474,9 +492,11 @@ router.get("/horario/individual/:id", async(req,res)=>{
 		validacion_actividad = false;
 	}
 
-	
+	const validar_tarea_terminada = await pool.query(`SELECT titulo,fecha_fin FROM tareas WHERE fecha_fin IS NOT NULL`);
+	const Validar_tarea_terminada = validar_tarea_terminada.rows;
 
-	res.render(`${gestion_tiempo_DV.horario.individual}`, {id, gestion_tiempo_links,Datos, validacion_actividad,validacion_tarea});
+
+	res.render(`${gestion_tiempo_DV.horario.individual}`, {id, gestion_tiempo_links,Datos, validacion_actividad,validacion_tarea,Validar_tarea_terminada});
 });
 
 router.get("/horario/individual/add/:id", async(req,res)=>{
@@ -514,7 +534,7 @@ router.post("/horario/individual/add/:id", async(req,res)=>{
 });
 
 router.post("/horario/add/tarea", async(req,res)=>{
-	const{meta,objetivo,titulo, hora_inicio, hora_fin,id_horario} = req.body;
+	const{meta,objetivo,titulo, hora_inicio, hora_fin,id_horario, id_tarea} = req.body;
 	const datos = {
 		meta,
 		objetivo,
@@ -522,7 +542,8 @@ router.post("/horario/add/tarea", async(req,res)=>{
 		hora_inicio,
 		hora_fin,
 		tipo_tarea:"Tarea Meta",
-		id_horario
+		id_horario,
+		id_tarea
 	};
 
 	await pool.query(`INSERT INTO horario_registro (
@@ -533,11 +554,12 @@ router.post("/horario/add/tarea", async(req,res)=>{
 		hora_inicio,
 		hora_fin,
 		tipo,
-		horario_id
+		horario_id,
+		tarea_id
 		)
 
 		VALUES
-		(DEFAULT,$1,$2,$3,$4,$5,$6,$7);`,[...Object.values(datos)]);
+		(DEFAULT,$1,$2,$3,$4,$5,$6,$7,$8);`,[...Object.values(datos)]);
 
 	res.redirect(`${gestion_tiempo_links.tareas.orden}`);
 });
@@ -580,8 +602,60 @@ router.get("/horario/individual/delet/:id", async (req,res)=>{
 	res.redirect(`${gestion_tiempo_links.horario.individual}/${Horario.horario_id}`);
 });
 
+router.get("/horario/individual/confir/tarea/:id", async (req,res)=>{
+	const {id} = req.params;
+
+	await pool.query(`UPDATE horario_registro SET completada = true WHERE id = $1`,[id]);
+
+	const horario = await pool.query(`SELECT id,horario_id FROM horario_registro WHERE id = $1`,[id]);
+	const Horario = horario.rows[0];
+
+	res.redirect(`${gestion_tiempo_links.horario.individual}/${Horario.horario_id}`);
+});
+
+router.get("/horario/individual/desconfir/tarea/:id", async (req,res)=>{
+	const {id} = req.params;
+
+	await pool.query(`UPDATE horario_registro SET completada = false WHERE id = $1`,[id]);
+
+	const horario = await pool.query(`SELECT id,horario_id FROM horario_registro WHERE id = $1`,[id]);
+	const Horario = horario.rows[0];
+
+	res.redirect(`${gestion_tiempo_links.horario.individual}/${Horario.horario_id}`);
+});
+
+router.get("/horario/individual/confir/tarea_meta/:id_horario/:id_tarea", async (req,res)=>{
+	const {id_horario, id_tarea} = req.params;
+
+	await pool.query(`UPDATE horario_registro SET completada = true WHERE id = $1`,[id_horario]);
+	await pool.query(`UPDATE tareas SET fecha_fin = now() WHERE id = $1`,[id_tarea]);
+
+	const horario = await pool.query(`SELECT id,horario_id FROM horario_registro WHERE id = $1`,[id_horario]);
+	const Horario = horario.rows[0];
+	
+	res.redirect(`${gestion_tiempo_links.horario.individual}/${Horario.horario_id}`);
+});
+
+router.get("/horario/individual/desconfir/tarea_meta/:id_horario/:id_tarea", async (req,res)=>{
+	const {id_horario, id_tarea} = req.params;
+
+	await pool.query(`UPDATE horario_registro SET completada = false WHERE id = $1`,[id_horario]);
+	await pool.query(`UPDATE tareas SET fecha_fin = null WHERE id = $1`,[id_tarea]);
+
+	const horario = await pool.query(`SELECT id,horario_id FROM horario_registro WHERE id = $1`,[id_horario]);
+	const Horario = horario.rows[0];
+	
+	res.redirect(`${gestion_tiempo_links.horario.individual}/${Horario.horario_id}`);
+});
 
 
+
+
+
+
+
+
+//&Actividad
 router.get("/actividad/registrar/:id", async (req,res)=>{
 	const {id} = req.params;
 	const horario_datos = await pool.query(`SELECT meta,objetivo,titulo_tarea,tipo,horario_id FROM horario_registro WHERE id = $1`,[id]);
@@ -616,5 +690,7 @@ router.get("/actividad/finalizar/:id", async (req,res)=>{
 	await pool.query(`UPDATE actividad SET fecha_fin = now(),validar = false WHERE validar = true`);
 	res.redirect(`${gestion_tiempo_links.horario.individual}/${Horario_datos.horario_id}`)
 });
+
+
 
 module.exports = router;

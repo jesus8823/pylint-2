@@ -99,8 +99,14 @@
 	margin-top: 20px;
 }
 .contenedor_tareas_ind li{
-	color: red;
+	color: #f52323;
 	font-size: 22px;
+}
+
+.titulo_tarea_horario{
+	color: #f52323;
+	font-size: 22px;
+	text-decoration: none;
 }
 
 .tipo_tarea{

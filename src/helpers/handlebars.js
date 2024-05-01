@@ -59,4 +59,18 @@ handlebars.registerHelper('eq', eqHelper);
 handlebars.registerHelper('neq', neqHelper);
 handlebars.registerHelper('mayor_menor', mayor_menor);
 
+
+handlebars.registerHelper('validarTitulo', function(titulo, array, options) {
+    if (!array || !Array.isArray(array)) {
+        return options.inverse(this);
+    }
+
+    const encontrado = array.find(objeto => objeto && objeto.titulo === titulo);
+    if (encontrado) {
+        return options.fn(this);
+    } else {
+        return options.inverse(this);
+    }
+});
+
 module.exports = handlebars;

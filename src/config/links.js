@@ -26,7 +26,11 @@ const links = {
             individual: `${GT}/horario/individual`,
             add_tarea_ind: `${GT}/horario/individual/add`,
             edit_tarea_ind: `${GT}/horario/individual/edit`,
-            delet_tarea_ind: `${GT}/horario/individual/delet`
+            delet_tarea_ind: `${GT}/horario/individual/delet`,
+            confirmar_tarea_ind: `${GT}/horario/individual/confir/tarea`,
+            desconfirmar_tarea_ind: `${GT}/horario/individual/desconfir/tarea`,
+            confirmar_tarea_meta_ind:`${GT}/horario/individual/confir/tarea_meta`,
+            desconfirmar_tarea_meta_ind:`${GT}/horario/individual/desconfir/tarea_meta`
         },
         
         metas: {
