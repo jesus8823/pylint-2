@@ -21,7 +21,7 @@
 			{{#if completada}}
 			<a class="tachar titulo_tarea_horario C-verde_claro" href="{{../gestion_tiempo_links.horario.desconfirmar_tarea_ind}}/{{id}}">{{titulo_tarea}}</a>
 			{{else}}
-			<a class="titulo_tarea_horario" href="{{../gestion_tiempo_links.horario.confirmar_tarea_aparte_ind}}/{{id}}">{{titulo_tarea}}</a>
+			<a class="titulo_tarea_horario" href="{{../gestion_tiempo_links.horario.confirmar_tarea_ind}}/{{id}}">{{titulo_tarea}}</a>
 			{{/if}}
 			
 			<strong class="hora_inicio_horarios">{{hora_inicio}}</strong>
@@ -42,10 +42,6 @@
 			{{else}}
 			<a href="{{../gestion_tiempo_links.horario.confirmar_tarea_meta_ind}}/{{id}}/{{tarea_id}}" id="none_completar" class="none sub_btn B-azul_claro">Confirmar</a>
 			{{/validarTitulo}}
-
-			
-			
-
 			{{/eq}}
 
 			<a href="{{../gestion_tiempo_links.horario.edit_tarea_ind}}/{{id}}" id="none_config" class="none sub_btn B-naranja">Editar</a>
