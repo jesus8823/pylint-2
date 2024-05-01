@@ -524,11 +524,12 @@ router.post("/horario/individual/add/:id", async(req,res)=>{
 		hora_inicio,
 		hora_fin,
 		tipo,
+		completada,
 		horario_id
 		)
 
 		VALUES
-		(DEFAULT,NULL,NULL,$1,$2,$3,$4,$5);`,[...Object.values(datos)]);
+		(DEFAULT,NULL,NULL,$1,$2,$3,$4,false,$5);`,[...Object.values(datos)]);
 
 	res.redirect(`${gestion_tiempo_links.horario.individual}/${datos.id}`);
 });
@@ -554,12 +555,13 @@ router.post("/horario/add/tarea", async(req,res)=>{
 		hora_inicio,
 		hora_fin,
 		tipo,
+		completada,
 		horario_id,
 		tarea_id
 		)
 
 		VALUES
-		(DEFAULT,$1,$2,$3,$4,$5,$6,$7,$8);`,[...Object.values(datos)]);
+		(DEFAULT,$1,$2,$3,$4,$5,$6,false,$7,$8);`,[...Object.values(datos)]);
 
 	res.redirect(`${gestion_tiempo_links.tareas.orden}`);
 });
