@@ -4,11 +4,73 @@
 	<a class="btn_metas agregar_btn" href="{{gestion_tiempo_links.horario.add_tarea_ind}}/{{id}}">Agregar</a>
 	<button class="btn_metas insertar_fechas_btn" onclick="aparecer_desaparecer(`none_actividad`)">Actividad</button>
 	<button class="btn_metas horario_btn" onclick="aparecer_desaparecer(`none_completar`)">Completar</button>
+	<button class="btn_metas tachar_btn" onclick="aparecer_desaparecer(`none_tachar`)">Tachar</button>
 	<button class="btn_metas config_btn" onclick="aparecer_desaparecer(`none_config`)">Config</button>
 </div>
 
 <div class="horario_ind_contenedor">
 	<h3>Horario </h3>
+	{{#if Tarea_inicida.iniciada}}
+		<div class="contenedor_tareas_ind">
+		<p class="tipo_tarea">{{Tarea_inicida.tipo}}</p>
+		<p class="meta_tarea_horario">{{Tarea_inicida.meta}}</p>
+		<p class="objetivo_tarea_horario">{{Tarea_inicida.objetivo}}</p>
+		
+		
+			
+		<li>
+			{{#if Tarea_inicida.completada}}
+			{{#if Tarea_inicida.fallida}}
+			<a class="tachar titulo_tarea_horario C-rojo" href="{{gestion_tiempo_links.horario.desconfirmar_tarea_ind}}/{{Tarea_inicida.id}}">{{Tarea_inicida.titulo_tarea}}</a>
+			{{else}}
+			<a class="tachar titulo_tarea_horario C-verde_claro" href="{{gestion_tiempo_links.horario.desconfirmar_tarea_ind}}/{{Tarea_inicida.id}}">{{Tarea_inicida.titulo_tarea}}</a>
+			{{/if}}
+			{{else}}
+			<a class="titulo_tarea_horario {{#if Tarea_inicida.iniciada}}C-verde{{/if}}" href="{{gestion_tiempo_links.horario.confirmar_tarea_ind}}/{{Tarea_inicida.id}}">{{Tarea_inicida.titulo_tarea}}</a>
+			{{/if}}
+			
+			<strong class="hora_inicio_horarios">{{Tarea_inicida.hora_inicio}}</strong>
+			<strong class="hora_fin_horarios">{{Tarea_inicida.hora_fin}}</strong>
+			
+			{{#if validacion_actividad}}
+			{{#validarTitulo Tarea_inicida.titulo_tarea Validar_tarea_iniciada}}
+			<a href="/gestion_tiempo/actividad/iniciar/{{id}}/{{Tarea_inicida.tarea_id}}" id="none_actividad" class="none sub_btn btn_pequeño B-rojo">Iniciar</a>
+			{{else}}
+			<a href="/gestion_tiempo/actividad/iniciar/{{Tarea_inicida.id}}" id="none_actividad" class="none sub_btn btn_pequeño B-rojo">Iniciar</a>
+			{{/validarTitulo}}
+			{{else}}
+			{{#eq validacion_tarea Tarea_inicida.titulo_tarea}}
+			<a href="/gestion_tiempo/actividad/finalizar/{{Tarea_inicida.id}}" id="none_actividad" class="none sub_btn btn_pequeño B-verde">Fin</a>
+			{{/eq}}
+			{{/if}}
+
+			{{#eq meta null}}
+			{{else}}
+			{{#validarTitulo Tarea_inicida.titulo_tarea Validar_tarea_terminada}}
+			<a href="{{gestion_tiempo_links.horario.desconfirmar_tarea_meta_ind}}/{{Tarea_inicida.id}}/{{Tarea_inicida.tarea_id}}" id="none_completar" class="none sub_btn B-rojo">Desconfirmar</a>
+			{{else}}
+			<a href="{{gestion_tiempo_links.horario.confirmar_tarea_meta_ind}}/{{Tarea_inicida.id}}/{{Tarea_inicida.tarea_id}}" id="none_completar" class="none sub_btn B-azul_claro">Confirmar</a>
+			{{/validarTitulo}}
+			{{/eq}}
+
+			{{#if Tarea_inicida.completada}}
+			{{else}}
+			{{#if Tarea_inicida.fallida}}
+			{{else}}
+			<a href="{{gestion_tiempo_links.horario.fallar_tarea_ind}}/{{Tarea_inicida.id}}" id="none_tachar" class="none sub_btn B-rojo">Fallida</a>
+			{{/if}}
+			{{/if}}
+
+			<a href="{{gestion_tiempo_links.horario.edit_tarea_ind}}/{{Tarea_inicida.id}}" id="none_config" class="none sub_btn B-naranja">Editar</a>
+			<a href="{{gestion_tiempo_links.horario.delet_tarea_ind}}/{{Tarea_inicida.id}}" id="none_config" class="none sub_btn B-rojo">Eliminar</a>
+		</li>
+	</div>
+	<br>
+	<br>
+
+	{{/if}}
+
+
 	{{#each Datos}}
 	<div class="contenedor_tareas_ind">
 		<p class="tipo_tarea">{{tipo}}</p>
@@ -18,17 +80,27 @@
 		
 			
 		<li>
+
+
 			{{#if completada}}
-			<a class="tachar titulo_tarea_horario C-verde_claro" href="{{../gestion_tiempo_links.horario.desconfirmar_tarea_ind}}/{{id}}">{{titulo_tarea}}</a>
+			{{#if fallida}}
+			<a class="tachar titulo_tarea_horario C-rojo" href="{{../gestion_tiempo_links.horario.desconfirmar_tarea_ind}}/{{id}}">{{titulo_tarea}}</a>
 			{{else}}
-			<a class="titulo_tarea_horario" href="{{../gestion_tiempo_links.horario.confirmar_tarea_ind}}/{{id}}">{{titulo_tarea}}</a>
+			<a class="tachar titulo_tarea_horario C-verde_claro" href="{{../gestion_tiempo_links.horario.desconfirmar_tarea_ind}}/{{id}}">{{titulo_tarea}}</a>
+			{{/if}}
+			{{else}}
+			<a class="titulo_tarea_horario {{#if iniciada}}C-verde{{/if}}" href="{{../gestion_tiempo_links.horario.confirmar_tarea_ind}}/{{id}}">{{titulo_tarea}}</a>
 			{{/if}}
 			
 			<strong class="hora_inicio_horarios">{{hora_inicio}}</strong>
 			<strong class="hora_fin_horarios">{{hora_fin}}</strong>
 			
 			{{#if ../validacion_actividad}}
-			<a href="/gestion_tiempo/actividad/registrar/{{id}}" id="none_actividad" class="none sub_btn btn_pequeño B-rojo">Iniciar</a>
+			{{#validarTitulo titulo_tarea ../Validar_tarea_iniciada}}
+			<a href="/gestion_tiempo/actividad/iniciar/{{id}}/{{tarea_id}}" id="none_actividad" class="none sub_btn btn_pequeño B-rojo">Iniciar</a>
+			{{else}}
+			<a href="/gestion_tiempo/actividad/iniciar/{{id}}" id="none_actividad" class="none sub_btn btn_pequeño B-rojo">Iniciar</a>
+			{{/validarTitulo}}
 			{{else}}
 			{{#eq ../validacion_tarea titulo_tarea}}
 			<a href="/gestion_tiempo/actividad/finalizar/{{id}}" id="none_actividad" class="none sub_btn btn_pequeño B-verde">Fin</a>
@@ -43,6 +115,14 @@
 			<a href="{{../gestion_tiempo_links.horario.confirmar_tarea_meta_ind}}/{{id}}/{{tarea_id}}" id="none_completar" class="none sub_btn B-azul_claro">Confirmar</a>
 			{{/validarTitulo}}
 			{{/eq}}
+
+			{{#if completada}}
+			{{else}}
+			{{#if fallida}}
+			{{else}}
+			<a href="{{../gestion_tiempo_links.horario.fallar_tarea_ind}}/{{id}}" id="none_tachar" class="none sub_btn B-rojo">Fallida</a>
+			{{/if}}
+			{{/if}}
 
 			<a href="{{../gestion_tiempo_links.horario.edit_tarea_ind}}/{{id}}" id="none_config" class="none sub_btn B-naranja">Editar</a>
 			<a href="{{../gestion_tiempo_links.horario.delet_tarea_ind}}/{{id}}" id="none_config" class="none sub_btn B-rojo">Eliminar</a>

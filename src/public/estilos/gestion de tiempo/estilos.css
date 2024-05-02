@@ -82,6 +82,12 @@
 	background: #001f3b;
 }
 
+.tachar_btn{
+	background: #bd1010;
+}.tachar_btn:hover{
+	background: #650000;
+}
+
 .horario_btn{
 	background: #106bbd;
 	transition: 0.5s;

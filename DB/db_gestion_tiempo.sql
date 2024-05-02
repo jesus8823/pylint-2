@@ -57,6 +57,8 @@ CREATE TABLE horario_registro(
 	hora_fin TIME,
 	tipo TEXT,
 	completada BOOLEAN,
+	fallida BOOLEAN,
+	iniciada BOOLEAN,
 	horario_id INT REFERENCES horarios(id),
 	tarea_id INT
 );
