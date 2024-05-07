@@ -31,6 +31,9 @@
 .C-rojo_suave{
 	color: #f74c4c;
 }
+.C-naranja_2{
+	color: #ff7b00;
+}
 
 
 
@@ -368,7 +371,6 @@
 }
 .tareas_orden_contenedor li{
 	font-size: 20px;
-	color: #f52323;
 	margin-top: 5px;
 	margin-bottom: 20px;
 }

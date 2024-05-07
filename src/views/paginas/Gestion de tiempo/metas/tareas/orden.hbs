@@ -15,7 +15,13 @@
 	<div class="contenedor_tareas">
 		<h3 class="meta_ordenar" id="horario_datos_extraccion_meta({{id_tareas}})">{{m_titulo}}</h3>
 		<p class="objetivo_ordenar" id="horario_datos_extraccion_objetivo({{id_tareas}})">{{o_titulo}}</p>
-		<li id="horario_datos_extraccion_titulo({{id_tareas}})">
+		
+		{{#validarTitulo t_titulo ../Horario_indiv}}
+		<li id="horario_datos_extraccion_titulo({{id_tareas}})" class="C-naranja_2">
+		{{else}}
+		<li id="horario_datos_extraccion_titulo({{id_tareas}})" class="C-rojo">
+		{{/validarTitulo}}
+		
 			{{t_titulo}}
 			<strong id="none_fechas" class="fecha_plazo_objetivo_tarea plazo">{{fecha_cumplimiento_t}}</strong>
 			{{#eq fecha_cumplimiento_t null}}

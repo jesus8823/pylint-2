@@ -417,9 +417,12 @@ router.get("/metas/tareas/orden", async(req,res)=>{
 
 
 	const horarios = await pool.query(`SELECT*FROM horarios ORDER BY titulo`);
-	const Horarios = horarios.rows
+	const Horarios = horarios.rows;
 
-	res.render(`${gestion_tiempo_DV.tareas.orden}`,{Tabla_metas_objetivos_tareas,gestion_tiempo_links,Horarios})
+	const horario_indiv = await pool.query(`SELECT titulo_tarea AS titulo, tipo FROM horario_registro WHERE tipo = 'Tarea Meta'`);
+	const Horario_indiv = horario_indiv.rows;
+
+	res.render(`${gestion_tiempo_DV.tareas.orden}`,{Tabla_metas_objetivos_tareas,gestion_tiempo_links,Horarios,Horario_indiv})
 });
 
 
