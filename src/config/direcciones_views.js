@@ -38,7 +38,8 @@ const direcciones = {
             index: `${raiz_gestion_tiempo}/metas/index`,
             add: `${raiz_gestion_tiempo}/metas/metas_add`,
             edit: `${raiz_gestion_tiempo}/metas/metas_edit`,
-            add_plazo: `${raiz_gestion_tiempo}/metas/metas_add_fecha_plazo`
+            add_plazo: `${raiz_gestion_tiempo}/metas/metas_add_fecha_plazo`,
+            edicion_masiva: `${raiz_gestion_tiempo}/metas/meta_edicion_masiva`
         },
 
         objetivos:{

@@ -146,10 +146,15 @@
 }
 .meta h2{
 	width: 100%;
-	color: #54ef43;
+	
 	font-size: 25px;
 	margin-bottom: 10px;
 	text-align: center;
+}
+
+.meta_titulo{
+	color: #54ef43;
+	text-decoration: none;
 }
 
 .fecha_meta_contenedor{

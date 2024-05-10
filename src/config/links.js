@@ -39,7 +39,8 @@ const links = {
             edit: `${GT}/metas/edit`,
             add_fecha_inicio: `${GT}/metas/add/fecha_inicio`,
             add_fecha_fin: `${GT}/metas/add/fecha_fin`,
-            add_fecha_plazo: `${GT}/metas/add/fecha_plazo`
+            add_fecha_plazo: `${GT}/metas/add/fecha_plazo`,
+            edit_masivo: `${GT}/metas/edicion_masiva`
         },
         objetivos:{
             add: `${GT}/metas/objetivos/add`,
