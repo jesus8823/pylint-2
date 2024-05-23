@@ -49,23 +49,7 @@
 <div class="contenedor_horarios_insertar none" id="none_horario_emergente">
 	
 	<div class="contenedor_horario">
-		<form class="inputs_horario" id="formulario_horario_datos" method="POST" action="/gestion_tiempo/horario/add/tarea">
-			<input type="number" name="id_horario" id="input_id_horario">
-			<input type="number" name="id_tarea" id="input_id_tarea">
-			<input type="text" name="meta" id="input_meta_horario">
-			<input type="text" name="objetivo" id="input_objetivo_horario">
-			<input type="text" name="titulo" id="input_titulo_horario">
-			<div class="input_contenedor">
-				<p>Hora Inicio</p>
-				<input type="time" name="hora_inicio" class="C-naranja" required>
-			</div>
-			
-			<div class="input_contenedor">
-				<p>Hora Fin</p>
-				<input type="time" name="hora_fin" class="C-verde" required>
-			</div>
-			
-		</form>
+		
 		<button class="X_cerrar" onclick="aparecer_desaparecer(`none_horario_emergente`)">X</button>
 		<div class="horarios_text">
 			{{#each Horarios}}
@@ -73,6 +57,47 @@
 			</button>
 			{{/each}}	
 		</div>
+
+		<form class="inputs_horario" id="formulario_horario_datos" method="POST" action="/gestion_tiempo/horario/add/tarea">
+			<div class="inputs_informativos_horario">
+				<div class="input_contenedor hidden">
+					<p>Horario Id</p>
+					<input type="number" name="id_horario" id="input_id_horario">
+				</div>
+				<div class="input_contenedor hidden">
+					<p>Tarea Id</p>
+					<input type="number" name="id_tarea" id="input_id_tarea">
+				</div>
+				<div class="input_contenedor">
+					<p>Titulo Meta</p>
+					<input type="text" name="meta" id="input_meta_horario">
+				</div>
+				<div class="input_contenedor">
+					<p>Titulo Objetivo</p>
+					<input type="text" name="objetivo" id="input_objetivo_horario">
+				</div>
+				<div class="input_contenedor">
+					<p>Titulo Tarea</p>
+					<input type="text" name="titulo" id="input_titulo_horario">
+				</div>
+			</div>
+			
+			
+			
+			<div class="inputs_hora_horario">
+				<div class="input_contenedor">
+					<p>Hora Inicio</p>
+					<input type="time" name="hora_inicio" class="C-naranja" value="00:00" required>
+				</div>
+				
+				<div class="input_contenedor">
+					<p>Hora Fin</p>
+					<input type="time" name="hora_fin" class="C-verde" value="00:00" required>
+				</div>
+			</div>
+			
+			
+		</form>
 		
 	</div>
 </div>

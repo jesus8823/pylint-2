@@ -139,7 +139,7 @@
 .contenedor_horario{
 	background: #000;
 	width: 60%;
-	height: 60%;
+	height: 75%;
 	border-radius: 5px;
 	position: relative;
 	display: flex;
@@ -165,12 +165,12 @@
 }
 
 .inputs_horario{
+	height: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	position: absolute;
-	bottom: 10px;
 	right: 10px;
 	padding: 10px;
 	gap: 10px;
@@ -188,6 +188,17 @@
 .input_contenedor{
 	width: 100%;
 	color:#bfbfbf;
+}
+
+.inputs_informativos_horario{
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.inputs_hora_horario{
+	display: flex;
+	flex-direction: row;
+	gap: 5px;
 }
 
 .horarios_text{
@@ -210,4 +221,43 @@
 	background: none;
 	border: none;
 	cursor: pointer;
+}
+
+@media (max-width: 1100px) {
+	.contenedor_horario{
+		width: 80%;
+		height: 80%;
+	}
+}
+
+@media (max-width: 880px) {
+	.inputs_informativos_horario{
+		flex-direction: row;
+	}
+	.inputs_hora_horario{
+		flex-direction: row;
+		width: 200px;
+	}
+	.inputs_horario{
+		position: relative;
+		left: 0;
+		right: 0;
+
+	}
+	.contenedor_horario{
+		width: 95%;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+	.horarios_text{
+		width: auto;
+	}
+	.input_contenedor p{
+		font-size: 15px;
+	}
+	.hidden{
+		 visibility: hidden;
+		 position: absolute;
+	}
 }
