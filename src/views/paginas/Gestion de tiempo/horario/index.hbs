@@ -14,11 +14,14 @@
 		{{#each ../Horario_registro}}
 		{{#eq horario_id ../id}}
 			<li>
+
+				{{titulo_tarea}}
+				<br>
 				<strong class="hora_inicio_horarios">{{hora_inicio}}</strong>
 				_
 				<strong class="hora_fin_horarios">{{hora_fin}}</strong>
-				<br>
-				{{titulo_tarea}}
+				
+				
 			</li>
 		{{/eq}}
 		{{/each}}

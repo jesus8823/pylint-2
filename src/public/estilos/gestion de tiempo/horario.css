@@ -11,7 +11,6 @@
     padding: 30px;
     border-radius: 5px;
     margin-top: 90px;
-
 }
 
 .horario{
@@ -73,6 +72,17 @@
 	margin-top: 10px;
 }
 
+@media (max-width: 1000px) {
+	.horario{
+		width: calc(90%/2);
+	}
+}
+
+@media (max-width: 700px) {
+	.horario{
+		width: calc(90%/1);
+	}
+}
 
 
 /*$$Horario_individual*/
