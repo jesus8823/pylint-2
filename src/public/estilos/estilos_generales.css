@@ -26,6 +26,7 @@ body{
 			z-index: 100;
 			display: flex;
 			position: fixed;
+			overflow-y: auto;
 		}
 
 		.links_contenedor{
