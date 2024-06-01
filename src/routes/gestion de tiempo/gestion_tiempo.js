@@ -736,8 +736,8 @@ router.get("/registro_actividades",async (req,res)=>{
 
 	const datos = await pool.query(`SELECT*, 
 								TO_CHAR(fecha_inicio, 'DD-MM-YYYY') AS fecha,
-								TO_CHAR(fecha_inicio, 'HH:MM') AS hora_inicio,
-								TO_CHAR(fecha_fin, 'HH:MM') AS hora_fin
+								TO_CHAR(fecha_inicio, 'HH24:MM') AS hora_inicio,
+								TO_CHAR(fecha_fin, 'HH24:MM') AS hora_fin
 									FROM actividad 
 									ORDER BY fecha_inicio ASC`);
 	const Datos = datos.rows;
