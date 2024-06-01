@@ -739,7 +739,7 @@ router.get("/registro_actividades",async (req,res)=>{
 								TO_CHAR(fecha_inicio, 'HH24:MM') AS hora_inicio,
 								TO_CHAR(fecha_fin, 'HH24:MM') AS hora_fin
 									FROM actividad 
-									ORDER BY fecha_inicio ASC`);
+									ORDER BY fecha_inicio DESC`);
 	const Datos = datos.rows;
 
 	res.render(`${gestion_tiempo_DV.actividad.index}`,{Fechas,Datos})
