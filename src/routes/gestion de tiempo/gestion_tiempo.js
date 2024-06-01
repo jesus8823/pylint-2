@@ -723,6 +723,31 @@ router.get("/horario/individual/desconfir/tarea_meta/:id_horario/:id_tarea", asy
 
 
 //&Actividad
+
+router.get("/registro_actividades",async (req,res)=>{
+
+	const fechas = await pool.query(`
+	SELECT DISTINCT 
+		TO_CHAR(fecha_inicio, 'DD-MM-YYYY') AS fecha, 
+  		TO_CHAR(fecha_inicio, 'YYYY-MM-DD') AS fecha_inicio
+		  	FROM actividad
+		  	ORDER BY fecha_inicio DESC`);
+	const Fechas = fechas.rows;
+
+	const datos = await pool.query(`SELECT*, 
+								TO_CHAR(fecha_inicio, 'DD-MM-YYYY') AS fecha,
+								TO_CHAR(fecha_inicio, 'HH:MM') AS hora_inicio,
+								TO_CHAR(fecha_fin, 'HH:MM') AS hora_fin
+									FROM actividad 
+									ORDER BY fecha_inicio ASC`);
+	const Datos = datos.rows;
+
+	res.render(`${gestion_tiempo_DV.actividad.index}`,{Fechas,Datos})
+})
+
+
+
+
 router.get("/actividad/iniciar/:id", async (req,res)=>{
 	const {id} = req.params;
 	const horario_datos = await pool.query(`SELECT meta,objetivo,titulo_tarea,tipo,horario_id FROM horario_registro WHERE id = $1`,[id]);
@@ -788,5 +813,8 @@ router.get("/actividad/finalizar/:id", async (req,res)=>{
 
 	res.redirect(`${gestion_tiempo_links.horario.individual}/${Horario_datos.horario_id}`)
 });
+
+
+
 
 module.exports = router;

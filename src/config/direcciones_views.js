@@ -2,7 +2,7 @@ const raiz_finanzas = './paginas/finanzas';
 const raiz_gestion_tiempo = './paginas/Gestion de tiempo';
 
 const direcciones = {
- 
+
     finanzas_DV: {
         index: `${raiz_finanzas}/index`,
 
@@ -25,6 +25,10 @@ const direcciones = {
 
     gestion_tiempo_DV: {
         index: './paginas/Gestion de tiempo/index',
+
+        actividad:{
+            index: `${raiz_gestion_tiempo}/actividad`
+        },
 
         horario:{
             todos: `${raiz_gestion_tiempo}/horario/index`,

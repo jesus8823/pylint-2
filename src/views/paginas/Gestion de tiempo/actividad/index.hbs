@@ -1,0 +1,37 @@
+{{> menu_gestion_tiempo}}
+
+
+<div class="btn_metas_contenedor">
+	<a href="{{gestion_tiempo_links.metas.add}}" class="btn_metas nueva_meta_btn">Nueva Meta</a>
+	<button class="btn_metas agregar_btn" onclick="aparecer_desaparecer(`none_agregar`)">Agregar</button>
+	<button class="btn_metas insertar_fechas_btn" onclick="aparecer_desaparecer(`none_insertar_fechas`)">Insertar Fechas</button>
+	<button class="btn_metas fechas_btn" onclick="aparecer_desaparecer(`none_fechas`)">Ver Fechas</button>
+	<button class="btn_metas config_btn" onclick="aparecer_desaparecer(`none_config`)">Config</button>
+</div>
+
+
+<div class="contenedor_registro_actividad">
+	{{#each Fechas}}
+	<h3 class="fecha_actividad">{{fecha}}</h3>
+	
+	{{#each ../Datos}}
+	{{#eq fecha ../fecha}}
+	<div class="contenedor_tarea_actividad">
+		<p class="tipo_tarea_actividad">Tarea Meta</p>
+		<p class="meta_actividad">{{meta}}</p>
+		<p class="objetivo_actividad">{{objetivo}}</p>
+		<li class="tarea_actividad">
+			{{titulo_tarea}}
+			<strong class="hora_inicio_horarios">{{hora_inicio}}</strong>
+			<strong class="hora_fin_horarios">{{hora_fin}}</strong>
+		</li>
+
+	</div>
+	{{/eq}}
+	{{/each}}
+
+	<div class="separador_actividad"></div>
+	{{/each}}
+
+	
+</div>
