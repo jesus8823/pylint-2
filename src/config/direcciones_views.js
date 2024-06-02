@@ -27,7 +27,9 @@ const direcciones = {
         index: './paginas/Gestion de tiempo/index',
 
         actividad:{
-            index: `${raiz_gestion_tiempo}/actividad`
+            index: `${raiz_gestion_tiempo}/actividad/index`,
+            edit: `${raiz_gestion_tiempo}/actividad/edit`,
+            delete: `${raiz_gestion_tiempo}/actividad/delete`
         },
 
         horario:{

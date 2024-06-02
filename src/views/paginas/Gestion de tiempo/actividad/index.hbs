@@ -2,10 +2,6 @@
 
 
 <div class="btn_metas_contenedor">
-	<a href="{{gestion_tiempo_links.metas.add}}" class="btn_metas nueva_meta_btn">Nueva Meta</a>
-	<button class="btn_metas agregar_btn" onclick="aparecer_desaparecer(`none_agregar`)">Agregar</button>
-	<button class="btn_metas insertar_fechas_btn" onclick="aparecer_desaparecer(`none_insertar_fechas`)">Insertar Fechas</button>
-	<button class="btn_metas fechas_btn" onclick="aparecer_desaparecer(`none_fechas`)">Ver Fechas</button>
 	<button class="btn_metas config_btn" onclick="aparecer_desaparecer(`none_config`)">Config</button>
 </div>
 
@@ -24,7 +20,10 @@
 			{{titulo_tarea}}
 			<strong class="hora_inicio_horarios">{{hora_inicio}}</strong>
 			<strong class="hora_fin_horarios">{{hora_fin}}</strong>
+			<a href="{{../../gestion_tiempo_links.actividad.edit}}/{{id}}" id="none_config" class="none sub_btn B-naranja">Editar</a>
+			<a href="{{../../gestion_tiempo_links.actividad.delete}}/{{id}}" id="none_config" class="none sub_btn B-rojo">Eliminar</a>	
 		</li>
+		
 
 	</div>
 	{{/eq}}

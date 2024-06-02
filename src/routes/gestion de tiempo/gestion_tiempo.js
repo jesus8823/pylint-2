@@ -742,8 +742,50 @@ router.get("/registro_actividades",async (req,res)=>{
 									ORDER BY fecha_inicio DESC`);
 	const Datos = datos.rows;
 
-	res.render(`${gestion_tiempo_DV.actividad.index}`,{Fechas,Datos})
+	res.render(`${gestion_tiempo_DV.actividad.index}`,{Fechas,Datos,gestion_tiempo_links})
 })
+
+
+router.get("/registro_actividades/edit/:id", async (req,res)=>{
+	const {id} = req.params;
+	const fechas = await pool.query(`SELECT fecha_inicio, fecha_fin,
+											to_char(fecha_inicio, 'YYYY-MM-DD"T"HH24:MI') AS fecha_inicio_t,
+											to_char(fecha_fin, 'YYYY-MM-DD"T"HH24:MI') AS fecha_fin_t
+												FROM actividad WHERE id = $1`,[id]);
+	const Fechas = fechas.rows[0]; 
+ 	res.render(`${gestion_tiempo_DV.actividad.edit}`,{id, Fechas})
+})
+
+router.post("/registro_actividades/edit/:id", async (req,res)=>{
+	const {id} = req.params;
+	const {fecha_inicio,fecha_fin} = req.body
+	
+	const datos = {
+		fecha_inicio,
+		fecha_fin,
+		id
+	}
+
+	if (datos.fecha_fin == ""){
+		datos.fecha_fin = null
+	}
+
+	await pool.query(`UPDATE actividad SET fecha_inicio = $1, fecha_fin =$2 WHERE id = $3`,[...Object.values(datos)])
+	res.redirect(`${gestion_tiempo_links.actividad.index}`);
+});
+
+router.get("/registro_actividades/delete/:id", async (req,res)=>{
+	const {id} = req.params;
+	await pool.query(`DELETE FROM actividad WHERE id = $1`, [id]);
+	res.redirect(`${gestion_tiempo_links.actividad.index}`);
+})
+
+
+
+
+
+
+
 
 
 

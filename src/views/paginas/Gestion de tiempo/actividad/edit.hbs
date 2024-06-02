@@ -1,0 +1,18 @@
+{{> menu_gestion_tiempo}}
+<div class="contenedor_titulo">
+	<h2 class="titulo_formulario_metas C-blanco B-gris_oscuro">Configurar Fecha Plazo</h2>
+</div>
+
+
+<form action="/gestion_tiempo/registro_actividades/edit/{{id}}" method="POST" class="formulario_metas_contenedor">
+	<div>
+		<p>Fecha Inicio</p>
+		<input type="datetime-local" name="fecha_inicio" class="C-verde" value="{{Fechas.fecha_inicio_t}}" required>
+	</div>
+	<div>
+		<p>Fecha Fin</p>
+		<input type="datetime-local" name="fecha_fin" class="C-naranja" value="{{Fechas.fecha_fin_t}}">
+	</div>
+	
+	<button>Enviar</button>
+</form>

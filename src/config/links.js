@@ -19,6 +19,11 @@ const links = {
     },
 
     gestion_tiempo_links: {
+        actividad:{
+            index:`${GT}/registro_actividades`,
+            edit:`${GT}/registro_actividades/edit`,
+            delete:`${GT}/registro_actividades/delete`
+        },
 
         horario: {
             index: `${GT}/horarios`,
