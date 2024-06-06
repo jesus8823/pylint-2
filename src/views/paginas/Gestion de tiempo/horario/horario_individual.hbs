@@ -33,11 +33,11 @@
 			<strong class="hora_fin_horarios">{{Tarea_inicida.hora_fin}}</strong>
 			
 			{{#if validacion_actividad}}
-			{{#validarTitulo Tarea_inicida.titulo_tarea Validar_tarea_iniciada}}
+			<!-- {{#validarTitulo Tarea_inicida.titulo_tarea Validar_tarea_iniciada}} -->
 			<a href="/gestion_tiempo/actividad/iniciar/{{id}}/{{Tarea_inicida.tarea_id}}" id="none_actividad" class="none sub_btn btn_pequeño B-rojo">Iniciar</a>
-			{{else}}
-			<a href="/gestion_tiempo/actividad/iniciar/{{Tarea_inicida.id}}" id="none_actividad" class="none sub_btn btn_pequeño B-rojo">Iniciar</a>
-			{{/validarTitulo}}
+			<!-- {{else}} -->
+			<!-- <a href="/gestion_tiempo/actividad/iniciar/{{Tarea_inicida.id}}" id="none_actividad" class="none sub_btn btn_pequeño B-rojo">Iniciar</a> -->
+			<!-- {{/validarTitulo}} -->
 			{{else}}
 			{{#eq validacion_tarea Tarea_inicida.titulo_tarea}}
 			<a href="/gestion_tiempo/actividad/finalizar/{{Tarea_inicida.id}}" id="none_actividad" class="none sub_btn btn_pequeño B-verde">Fin</a>
@@ -98,9 +98,9 @@
 			{{#if ../validacion_actividad}}
 			{{#validarTitulo titulo_tarea ../Validar_tarea_iniciada}}
 			<a href="/gestion_tiempo/actividad/iniciar/{{id}}/{{tarea_id}}" id="none_actividad" class="none sub_btn btn_pequeño B-rojo">Iniciar</a>
-			{{else}}
-			<a href="/gestion_tiempo/actividad/iniciar/{{id}}" id="none_actividad" class="none sub_btn btn_pequeño B-rojo">Iniciar</a>
-			{{/validarTitulo}}
+			{{else}} 
+			<a href="/gestion_tiempo/actividad/iniciar/{{id}}" id="none_actividad" class="none sub_btn btn_pequeño B-rojo">Iniciar</a> 
+			{{/validarTitulo}} 
 			{{else}}
 			{{#eq ../validacion_tarea titulo_tarea}}
 			<a href="/gestion_tiempo/actividad/finalizar/{{id}}" id="none_actividad" class="none sub_btn btn_pequeño B-verde">Fin</a>

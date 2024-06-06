@@ -73,7 +73,10 @@ CREATE TABLE actividad(
 	fecha_inicio TIMESTAMP,
 	fecha_fin TIMESTAMP,
 	validar BOOLEAN,
-	tipo TEXT
+	tipo TEXT,
+	id_tarea INT REFERENCES tareas(id),
+	id_objetivo INT REFERENCES objetivos(id),
+	id_meta INT REFERENCES metas(id)
 );
 CREATE SEQUENCE actividad_secuencia;
 ALTER TABLE actividad ALTER COLUMN id SET DEFAULT NEXTVAL('actividad_secuencia');

@@ -12,6 +12,7 @@
 	
 	{{#each ../Datos}}
 	{{#eq fecha ../fecha}}
+	{{#eq id_metas null}}
 	<div class="contenedor_tarea_actividad">
 		<p class="tipo_tarea_actividad">Tarea Meta</p>
 		<p class="meta_actividad">{{meta}}</p>
@@ -23,9 +24,21 @@
 			<a href="{{../../gestion_tiempo_links.actividad.edit}}/{{id}}" id="none_config" class="none sub_btn B-naranja">Editar</a>
 			<a href="{{../../gestion_tiempo_links.actividad.delete}}/{{id}}" id="none_config" class="none sub_btn B-rojo">Eliminar</a>	
 		</li>
-		
-
 	</div>
+	{{else}}
+	<div class="contenedor_tarea_actividad">
+		<p class="tipo_tarea_actividad">Tarea Meta</p>
+		<p class="meta_actividad">{{m_titulo}}</p>
+		<p class="objetivo_actividad">{{o_titulo}}</p>
+		<li class="tarea_actividad">
+			{{t_titulo}}
+			<strong class="hora_inicio_horarios">{{hora_inicio}}</strong>
+			<strong class="hora_fin_horarios">{{hora_fin}}</strong>
+			<a href="{{../../gestion_tiempo_links.actividad.edit}}/{{id}}" id="none_config" class="none sub_btn B-naranja">Editar</a>
+			<a href="{{../../gestion_tiempo_links.actividad.delete}}/{{id}}" id="none_config" class="none sub_btn B-rojo">Eliminar</a>	
+		</li>
+	</div>
+	{{/eq}}
 	{{/eq}}
 	{{/each}}
 

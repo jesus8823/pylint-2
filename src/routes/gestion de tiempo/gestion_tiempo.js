@@ -533,7 +533,7 @@ router.get("/horario/individual/:id", async(req,res)=>{
 	const validar_tarea_terminada = await pool.query(`SELECT titulo,fecha_fin FROM tareas WHERE fecha_fin IS NOT NULL`);
 	const Validar_tarea_terminada = validar_tarea_terminada.rows;
 
-	const validar_tarea_iniciada = await pool.query(`SELECT titulo,fecha_inicio FROM tareas WHERE fecha_inicio IS NULL`);
+	const validar_tarea_iniciada = await pool.query(`SELECT titulo,fecha_inicio FROM tareas;`);
 	const Validar_tarea_iniciada = validar_tarea_iniciada.rows;
 
 	const tarea_iniciada = await pool.query(`SELECT * FROM horario_registro WHERE iniciada = true`);
@@ -734,12 +734,45 @@ router.get("/registro_actividades",async (req,res)=>{
 		  	ORDER BY fecha_inicio DESC`);
 	const Fechas = fechas.rows;
 
-	const datos = await pool.query(`SELECT*, 
-								TO_CHAR(fecha_inicio, 'DD-MM-YYYY') AS fecha,
-								TO_CHAR(fecha_inicio, 'HH24:MI') AS hora_inicio,
-								TO_CHAR(fecha_fin, 'HH24:MI') AS hora_fin
-									FROM actividad 
-									ORDER BY fecha_inicio DESC`);
+	// const datos = await pool.query(`SELECT*, 
+	// 							TO_CHAR(fecha_inicio, 'DD-MM-YYYY') AS fecha,
+	// 							TO_CHAR(fecha_inicio, 'HH24:MI') AS hora_inicio,
+	// 							TO_CHAR(fecha_fin, 'HH24:MI') AS hora_fin
+	// 								FROM actividad 
+	// 								ORDER BY fecha_inicio DESC`);
+	// const Datos = datos.rows;
+
+	const datos = await pool.query(`SELECT 
+
+				actividad.id,
+				actividad.meta,
+				actividad.objetivo,
+				actividad.titulo_tarea,
+				actividad.fecha_inicio,
+				actividad.fecha_fin,
+				actividad.validar,  
+				actividad.tipo,
+				TO_CHAR(actividad.fecha_inicio, 'DD-MM-YYYY') AS fecha,
+	 			TO_CHAR(actividad.fecha_inicio, 'HH24:MI') AS hora_inicio,
+	 			TO_CHAR(actividad.fecha_fin, 'HH24:MI') AS hora_fin,
+
+
+				tareas.id AS id_tareas,
+				tareas.titulo AS T_titulo,
+
+				objetivos.id AS id_objetivos,
+				objetivos.titulo AS O_titulo,
+
+				metas.id AS id_metas,
+				metas.titulo AS M_titulo
+
+					FROM actividad
+				
+				LEFT JOIN tareas ON actividad.id_tarea = tareas.id
+				LEFT JOIN objetivos ON actividad.id_objetivo = objetivos.id
+				LEFT JOIN metas ON actividad.id_meta = metas.id
+
+				ORDER BY actividad.fecha_inicio DESC;`);
 	const Datos = datos.rows;
 
 	res.render(`${gestion_tiempo_DV.actividad.index}`,{Fechas,Datos,gestion_tiempo_links})
@@ -778,7 +811,7 @@ router.get("/registro_actividades/delete/:id", async (req,res)=>{
 	const {id} = req.params;
 	await pool.query(`DELETE FROM actividad WHERE id = $1`, [id]);
 	res.redirect(`${gestion_tiempo_links.actividad.index}`);
-})
+});
 
 
 
@@ -822,6 +855,13 @@ router.get("/actividad/iniciar/:id_horario_tarea/:id_tarea", async (req,res)=>{
 	const horario_datos = await pool.query(`SELECT meta,objetivo,titulo_tarea,tipo,horario_id FROM horario_registro WHERE id = $1`,[id_horario_tarea]);
 	const Horario_datos = horario_datos.rows[0];
 
+	const tarea = await pool.query(`SELECT*FROM tareas WHERE id = $1`,[id_tarea]);
+	const Tarea = tarea.rows[0];
+
+	if (Tarea.fecha_inicio == null) {
+		await pool.query(`UPDATE tareas SET fecha_inicio = now() WHERE id = $1`,[id_tarea]);	
+	}	
+	
 	await pool.query(`INSERT INTO actividad (
 		id,
 		meta,
@@ -830,18 +870,23 @@ router.get("/actividad/iniciar/:id_horario_tarea/:id_tarea", async (req,res)=>{
 		fecha_inicio,
 		fecha_fin,
 		validar,
-		tipo
+		tipo,
+		id_tarea,
+		id_objetivo,
+		id_meta
 		)
 
 		VALUES
-		(DEFAULT,$1,$2,$3,now(),NULL,true,$4);`,[
+		(DEFAULT,$1,$2,$3,now(),NULL,true,$4,$5,$6,$7);`,[
 												Horario_datos.meta,
 												Horario_datos.objetivo,
 												Horario_datos.titulo_tarea,
-												Horario_datos.tipo
+												Horario_datos.tipo,
+												Tarea.id,
+												Tarea.objetivos,
+												Tarea.meta    
 												]);
-	await pool.query(`UPDATE tareas SET fecha_inicio = now() WHERE id = $1`,[id_tarea]);
-	await pool.query(`UPDATE horario_registro SET iniciada = true WHERE id = $1`,[id_tarea]);
+	await pool.query(`UPDATE horario_registro SET iniciada = true WHERE id = $1`,[id_horario_tarea]);
 	res.redirect(`${gestion_tiempo_links.horario.individual}/${Horario_datos.horario_id}`)
 });
 
