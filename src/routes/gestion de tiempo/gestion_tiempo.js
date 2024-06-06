@@ -563,7 +563,7 @@ router.post("/horario/individual/add/:id", async(req,res)=>{
 		titulo,
 		hora_inicio,
 		hora_fin,
-		tipo_tarea:"tarea aparte",
+		tipo_tarea:"Tarea Aparte",
 		id
 	};
 
