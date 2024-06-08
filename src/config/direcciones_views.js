@@ -17,6 +17,11 @@ const direcciones = {
 
         gastos: {
             index:'.paginas/finanzas/gastos/index'
+        },
+
+        negocios_empresas: {
+            index: `${raiz_finanzas}/Negocios y Empresas/index`,
+            add_empresa: `${raiz_finanzas}/Negocios y Empresas/add_empresa`
         }
         
     },

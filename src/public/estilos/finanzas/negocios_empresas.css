@@ -1,0 +1,46 @@
+
+/*&empresas y negocios principal*/
+.contenedor_empresas{
+	widows: 100%;
+	margin-top: 100px;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 10px;
+	padding: 20px;
+
+}
+
+.empresa{
+	width: calc(90%/3);
+	text-align: center;
+	background: black;
+	border-radius: 5px;
+	padding: 15px 20px;
+	
+}
+.titulo_empresa{
+	text-decoration: none;
+	color: #1dd201;
+	font-size: 25px;
+}
+.registro_empresa{
+	color: #bcbcbc;
+	font-size: 20px;
+}
+.numeo_empresa{
+	color: #bcbcbc;
+	font-size: 20px;
+}
+
+@media (max-width: 760px) {
+	.empresa{
+		width: calc(90%/2);
+	}
+	.titulo_empresa{
+		font-size: 23px;
+	}
+	.registro_empresa{font-size: 18px}
+	.numeo_empresa{font-size: 18px}
+}
+

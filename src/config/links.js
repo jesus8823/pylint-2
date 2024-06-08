@@ -1,5 +1,7 @@
 const GT = `/gestion_tiempo`
 
+const FNE = `/finanzas/negocios_empresas`
+
 
 const links = {
     home_links: {
@@ -15,6 +17,11 @@ const links = {
             add: '/finanzas/registros/add',
             add_ingresos: '/finanzas/registros/add/ingresos',
             add_gastos: '/finanzas/registros/add/gastos'
+        },
+
+        negocios_empresas: {
+            inicio: `${FNE}`,
+            add_empresa: `${FNE}/empresa/add`
         }
     },
 

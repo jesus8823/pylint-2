@@ -1,3 +1,18 @@
+-- Negocios y Empresas
+CREATE TABLE empresas_negocios(
+	id INT PRIMARY KEY,
+	nombre text,
+	numero_registro text,
+	numero_telefonico text
+);
+CREATE SEQUENCE empresas_negocios_secuencia;
+ALTER TABLE empresas_negocios ALTER COLUMN id SET DEFAULT NEXTVAL('empresas_negocios_secuencia');
+
+
+
+
+
+
 -- Finanzas
 
 CREATE TABLE fecha_finanzas(

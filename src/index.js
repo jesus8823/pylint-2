@@ -2,6 +2,7 @@ const express = require("express");
 const exphbs = require("express-handlebars");
 const path = require("path");
 const pool = require("./database.js");
+const bonjour = require('bonjour')();
 
 //inicializaciones
 const app = express();
@@ -33,6 +34,7 @@ app.use(require("./routes/"));
 app.use("/finanzas", require("./routes/finanzas/finanzas"));
 app.use("/finanzas/registros", require("./routes/finanzas/registros"));
 app.use("/finanzas/gastos", require("./routes/finanzas/gastos"));
+app.use("/finanzas/negocios_empresas", require("./routes/finanzas/negocios_empresas"));
 
 
 app.use("/gestion_tiempo", require("./routes/gestion de tiempo/gestion_tiempo"));

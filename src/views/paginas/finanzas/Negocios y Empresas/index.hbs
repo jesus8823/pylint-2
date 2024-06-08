@@ -1,0 +1,19 @@
+{{> menu_finanzas}}
+
+<div class="btn_metas_contenedor">
+	<a href="{{finanzas_links.negocios_empresas.add_empresa}}" class="btn_metas nueva_meta_btn">Nueva Empresa</a>
+	<button class="btn_metas config_btn" onclick="aparecer_desaparecer(`none_config`)">Config</button>
+</div>
+
+<div class="contenedor_empresas">
+	{{#each Datos}}
+	<div class="empresa">
+		<h2>
+			<a href="" class="titulo_empresa">{{nombre}}</a>
+			<a href="" id="none_config" class="none sub_btn B-naranja">Editar</a>
+		</h2>
+		<p class="registro_empresa">{{numero_registro}}</p>
+		<p class="numeo_empresa">{{numero_telefonico}}</p>
+	</div>
+	{{/each}}
+</div>
